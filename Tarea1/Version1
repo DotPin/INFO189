@@ -6,7 +6,18 @@ Para el desarrollo e implementacion del código, usaremos diferencias divididas 
 Bajo esto mismo, usaremos las dff centradas de 1 solo punto de desplazamiento.
 
 
-####Objetivos:
+####Realizado
 
-*Revista código y limpiar comentarios
-*modificaciones en proceso
+*Revista código y limpiar comentarios para archivo nuevo
+*funcion de movimiento lista
+*ingresos parcialmente terminados,
+
+####Por realizar
+
+*falta las condiciones iniciales
+*vector de nodos terminado
+*inicializar con las condiciones y rellenar vector de nodos con variables simbólicas
+*generar módulo diferencia dividida de la primera derivada
+*realizar algoritmo de diferencias divididas en una dimension
+*generar los polinomios para la exportación
+*importar polinomios a vector de polinomios
