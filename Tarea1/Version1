@@ -1,6 +1,12 @@
 Versión 1
 
-Objetivos:
+####Supuestos:
+
+Para el desarrollo e implementacion del código, usaremos diferencias divididas de orden cero, uno y dos, para el desarrollo de las EDO.
+Bajo esto mismo, usaremos las dff centradas de 1 solo punto de desplazamiento.
+
+
+####Objetivos:
 
 *Revista código y limpiar comentarios
 *modificaciones en proceso
