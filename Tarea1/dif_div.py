@@ -23,18 +23,8 @@ def f_t(t):		#módulo de "función" f(t) de ecuación diferencial
   d = sin(t)            #función dependiente de parámetro "t", cambiar cual sea dependiente del mismo parámetro
   return d
 
-
-#ingreso del intervalo a producir aproximación
-
-inicio  = input("ingrese valor inicio intervalo (inicio >=0) : ")
-while (inicio<0):
-    print("ERROR, debe ingresar valor inicio>=0")
-    inicio  = input("ingrese valor inico intervalo (inicio >=0) : ")
-
-fin     = input("ingrese valor final intervalo (final>inicio) : ")
-while (fin<inicio):
-    print("ERROR, valor fin debe ser mayor al inicial")
-    fin     = input("ingrese valor final intervalo (final>inicio) : ")
+x_0 = 0
+x_1 = 1
     
 #Ingreso valor de constantes de la EDO
 
@@ -48,10 +38,10 @@ C = input("Ingrese el Valor 'C' de la EDO")
 
 print("Se solicitará ingreso de dx para el desarrollo de la Diferencia dividida")
 print("El dx debe estar en un intervalo 0<dx=<1")
-dx = input("Ingrese el dx: ") 
+dx = float(input("Ingrese el dx: "))
 while (dx<=0 or dx>1):
     print("El dx debe estar en un intervalo 0 < dx =< 1")
-    dx = input("Ingrese el dx: ") 
+    dx = float(input("Ingrese el dx: "))
     
 #Se establece rango y se crea vector de coeficientes polinomiales
 
@@ -60,5 +50,25 @@ largo = int(round(fin/dx))+1
 prl = ["" for x in xrange(largo)]	#genera vector de valores para mallado
 
 
-#prl[0] = condicion inicial
+prl[0] = x_0
+prl[largo-1] = x_1
+
+in_nd = 0
+for i in range(1,largo-1):		#relleno con las variables "symbolic" a nodos equisdistantes
+    nd = "T"+str(in_nd)                 
+    sy = symbols(nd)
+    prl[i] = sy
+    in_nd += 1		#numerará los nodos uno x uno hasta terminar cada celda del mallado
+
+
+
+
+
+
+
+
+
+
+
+
 
