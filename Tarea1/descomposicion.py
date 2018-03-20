@@ -10,29 +10,31 @@
 
 import csv
 
+import numpy as np
+
 with open("polinomios.txt","r") as a:
   c=[]
   
   indice = 0
   for x in a:
-    c.append(x.split(" "))	#genera una tupla de elementos, con subtuplas de elementos
-    indice += 1			#cuenta la cantidad de polinomios.
+    c.append(x.split(" "))	
+    indice += 1			
   
-  mm = [[float(0) for x in xrange(indice)] for x in xrange(indice)]	#genera matriz A
-  vct = [float(0) for x in xrange(indice)]				#genera vector B
+  mm = [[float(0) for x in xrange(indice)] for x in xrange(indice)]	
+  vct = [float(0) for x in xrange(indice)]				
   
   for b in c:
     for d in range(len(b)):
       if b[d].find("*")>0:
 	b[d]= b[d].split("*")
       
-  def descomponer2(x,y,m):	#funcion de descomposicion de subtuplas para formar matriz Ax = B
-    if len(x) < 3:		#revisa que la subtupla sea superior a 2
-      x[0] = float(x[0])*m	#elemento es transformado a numérico
-      l = x[1].split("T")	#separa variable "T" nodal para buscar coordenada en matriz A
-      l = int(l[1])		#convierte numero nodal
-      mm[y][l]= x[0]		#guarda numero convertido en matriz A
-    else:			#en caso de ser elemento flotante es convertido y guardado en matriz B
+  def descomponer2(x,y,m):	
+    if len(x) < 3:		
+      x[0] = float(x[0])*m	
+      l = x[1].split("T")	
+      l = int(l[1])		
+      mm[y][l]= x[0]		
+    else:			
       x = float(x)*m		
       vct[y] = x
       
@@ -50,16 +52,18 @@ with open("polinomios.txt","r") as a:
 	descomponer2(q,h,aux)
     aux=1
     h+=1
-  print mm
-  print "*"*20
-  print vct
-  
-dataCSV2 = open("vector_b", "wb")
-wr = csv.writer(dataCSV2, dialect='excel')
-wr.writerows([vct])
+
+c = np.linalg.solve(mm, vct)
+print("Solución del sistema")
+for i in range(len(c)):
+    print(c[i])
+
+#dataCSV2 = open("vector_b", "wb")
+#wr = csv.writer(dataCSV2, dialect='excel')
+#wr.writerows([vct])
 
 
-dataCSV = open("matriz_a", "wb")
-writer = csv.writer(dataCSV, dialect='excel')
-writer.writerows(mm)
+#dataCSV = open("matriz_a", "wb")
+#writer = csv.writer(dataCSV, dialect='excel')
+#writer.writerows(mm)
       

@@ -92,8 +92,6 @@ end
 %Solución del sistema lineal aproximado
 x
 
-save "resultado" x
-save "norma" p
-save "error" nn
+plot(x)
 
-%load resultado
+pause(10)
