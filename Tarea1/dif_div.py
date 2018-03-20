@@ -4,6 +4,7 @@
 #Para la ejecución de éste código es necesario tener instalado python v2.7 o superior
 #Se necesita ademas tener instalada la paquetería python-sympy
 #Desde linux la instalación de la paquetería simbóloca se realiza---> $sudo apt-get install python-sympy
+#Para el desarrollo de este código es necesario tener instalada la paquetería "numpy" ---> $sudo apt-get install python-numpy
 
 
 from sympy import *
