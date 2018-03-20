@@ -8,7 +8,7 @@
 
 from sympy import *
 import numpy as np
-import csv
+
 
 
 
@@ -89,20 +89,3 @@ for i in range(len(w)):
 with (open("polinomios.txt",'w')) as a:		#exporta los polinomios en archivo de texto
   for i in w:
     a.write(str(i)+"\n")
-
-vv = []
-vv.append(largo)
-vv.append(largo)
-
-dataCSV = open("len", "wb")
-writer = csv.writer(dataCSV, dialect='excel')
-writer.writerows([vv])
-
-
-
-
-
-
-
-
-

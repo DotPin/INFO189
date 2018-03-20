@@ -8,8 +8,6 @@
 #como parámetro para poder funcionar la descomposicion polinomial.
 
 
-import csv
-
 import numpy as np
 
 with open("polinomios.txt","r") as a:
@@ -58,12 +56,3 @@ print("Solución del sistema")
 for i in range(len(c)):
     print(c[i])
 
-#dataCSV2 = open("vector_b", "wb")
-#wr = csv.writer(dataCSV2, dialect='excel')
-#wr.writerows([vct])
-
-
-#dataCSV = open("matriz_a", "wb")
-#writer = csv.writer(dataCSV, dialect='excel')
-#writer.writerows(mm)
-      
