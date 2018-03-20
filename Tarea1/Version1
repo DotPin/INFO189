@@ -11,13 +11,14 @@ Bajo esto mismo, usaremos las dff centradas de 1 solo punto de desplazamiento.
 *Revista código y limpiar comentarios para archivo nuevo
 *funcion de movimiento lista
 *ingresos parcialmente terminados,
+*condiciones iniciales puestas
+*vector de nodos listos
+*mallado lineal listo
+*algoritmo ddf de primera derivada listo
+*generación de vector polinomio listo
+*resolucion de sistema Ax=B
+
 
 ####Por realizar
 
-*falta las condiciones iniciales
-*vector de nodos terminado
-*inicializar con las condiciones y rellenar vector de nodos con variables simbólicas
-*generar módulo diferencia dividida de la primera derivada
-*realizar algoritmo de diferencias divididas en una dimension
-*generar los polinomios para la exportación
-*importar polinomios a vector de polinomios
+*graficar
