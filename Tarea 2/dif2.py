@@ -60,7 +60,23 @@ while (dx<=0 or dx>1):
 
 largo = int(round(x_1/dx))+1
 
-prl = [[["" for x in xrange(largo)] for x in xrange(largo)]	for x in xrange(largo)]#genera vector de valores para mallado
+prl = [[["" for x in xrange(largo)] for x in xrange(largo)] for x in xrange(largo)]#genera vector de valores para mallado
+
+def mostrar(texto):		#Muestra malla de nodos
+  print "\n\n************************{}******************************".format(texto)
+  for i in range(0,largo):		#relleno con las variables "symbolic" a nodos equisdistantes
+    for j in range(0,largo):		#por dentro de la superficie
+      if prl[i][j][0] != "":
+	print prl[i][j][1],
+	print "\t",
+      else:
+	print "\t",
+	#print "{} \t".format(prl[i][j])
+    print "\n"
+  print "************************{}******************************\n\n".format(texto)
+
+
+
 
 for i in range(0,largo):
     for j in range(0,largo):
@@ -74,8 +90,6 @@ for i in range(0,largo):
         prl[largo-1][i][j] = 0.5
 
 
-print(prl)
-
 in_nd = 0
 for i in range(1,largo-1):		#relleno con las variables "symbolic" a nodos equisdistantes
     for j in range(1,largo-1):
@@ -86,8 +100,10 @@ for i in range(1,largo-1):		#relleno con las variables "symbolic" a nodos equisd
             in_nd += 1		#numerará los nodos uno x uno hasta terminar cada celda del mallado
             print(nd)
 
+mostrar("Modelo de Mallado Nodal")
 
-w = ["" for x in range(largo-2)]		#Vector para guardar las ecuaciones lineales
+
+w = ["" for x in range((largo-2)*(largo-2)*(largo-2))]		#Vector para guardar las ecuaciones lineales
 #stp = np.arange(x_0,x_1,dx)
 
 in_nd = 0
