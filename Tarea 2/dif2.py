@@ -66,6 +66,14 @@ for i in range(0,largo):
     for j in range(0,largo):
         prl[i][j][0] = 0.5
         prl[i][j][largo-1] = 10
+        
+        prl[i][0][j] = 0.5
+        prl[i][largo-1][j] = 0.5
+        
+        prl[0][i][j] = 0.5
+        prl[largo-1][i][j] = 0.5
+
+
 print(prl)
 
 in_nd = 0
