@@ -4,30 +4,54 @@
 from sympy import *
 
 
-largo = 4
+largo = 3   #numero de elementos
 
-I = ["" for x in xrange(largo)] #Arreglo de incognitas
+V = [0 for x in xrange(largo+1)]    #vector de nodos
+
+P = [0 for x in xrange(largo+1)]    #vector de polinomios
+
+I = [[0 for x in xrange(2)] for in xrange(2)] #Arreglo elementos
+
+F = [0 for x in xrange(largo)]      #arreglo vector F
 
 #arreglo y otras constantes
-D = ["" for x in xrange(largo-1)]   #Arreglo de variables D
+D = [0 for x in xrange(largo)]   #Arreglo de variables D
 
-L = ["" for x in xrange(largo-1)]   #Arreglo de L
+L = [0 for x in xrange(largo)]   #Arreglo de L
 
-Q = 1
+Q = 1   #valor temperatura ambiente
 
 
 
 #condiciones de borde
-I[0] = 20
-I[3] = -15
+#I[0] = 20
+#I[3] = -15
+
+M=[]    #vector multidimensional
+
+
+#creación multimatrices
+for k in range(largo-1):
+    F[k] = (Q*L[k])/2
+    for i in range(2):
+        for j in range(2):
+            I[i][j] = D[k]/L[k] + D[k]
+    M.append(I)
+
 
 #llenado vector
 in_ind=0
 for i in range(1,(largo-1)):
     sn = "T"+str(in_nd)
     sy = symbols(nd)
-    I[i] = "T"+str(in_nd)    
+    V[i] = sy    
     in_ind += 1
+
+acm=0
+for i in range(largo+1):
+    for j in range(largo+1):
+        acm = acm + matriz[i][j]*I[j]
+
 
 def armaMatriz(A,B,C):#Funcion para armar la matriz global, usando las 3 matrices
     #generadas a partir de los 3 elementos
