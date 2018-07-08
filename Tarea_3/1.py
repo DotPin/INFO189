@@ -47,6 +47,7 @@ for i in range(1,(largo-1)):
     V[i] = sy    
     in_ind += 1
 
+<<<<<<< HEAD
 acm=0
 for i in range(largo+1):
     for j in range(largo+1):
@@ -54,19 +55,13 @@ for i in range(largo+1):
 
 
 def armaMatriz(A,B,C):#Funcion para armar la matriz global, usando las 3 matrices
+=======
+def armaMatriz(A):#Funcion para armar la matriz global, usando las 3 matrices
+>>>>>>> 04309245dfab1c1b3599df7e1ac09c1dd16c6b91
     #generadas a partir de los 3 elementos
-    MatrizComp = zeros(4,4) #Creo una matriz simbolica de 4X4 dado que hay 4 nodos.
-    counter = 0
-    MatrizComp = añadeMatriz(MatrizComp,A,counter)
-    counter = 1
-    MatrizComp = añadeMatriz(MatrizComp,B,counter)
-    counter = 2 
-    MatrizComp = añadeMatriz(MatrizComp,C,counter)
-    print MatrizComp
+    MatrizComp = zeros((len(A)+1),(len(A)+1))
+    for i in range(0,len(A)):
+        for j in range(0,2):
+            for k in range(0,2):
+                MatrizComp[i+j][i+k] = MatrizComp[i+j][i+k] + A[i][j][k]
     return MatrizComp
-
-def añadeMatriz(A,B,C):
-    for (i=0; i < 2; i++):
-        for (j=0;j<2; j++):
-            A[i+C][j+C] = A[i+C][j+C] + B[i][j]
-    return A
