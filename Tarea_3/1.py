@@ -47,17 +47,14 @@ for i in range(1,(largo-1)):
     V[i] = sy    
     in_ind += 1
 
-<<<<<<< HEAD
 acm=0
 for i in range(largo+1):
     for j in range(largo+1):
         acm = acm + matriz[i][j]*I[j]
 
 
-def armaMatriz(A,B,C):#Funcion para armar la matriz global, usando las 3 matrices
-=======
+
 def armaMatriz(A):#Funcion para armar la matriz global, usando las 3 matrices
->>>>>>> 04309245dfab1c1b3599df7e1ac09c1dd16c6b91
     #generadas a partir de los 3 elementos
     MatrizComp = zeros((len(A)+1),(len(A)+1))
     for i in range(0,len(A)):
