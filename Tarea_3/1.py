@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*- 
 
-from sympy import *
+import numpy as np
 
 
 largo = 3   #numero de elementos
@@ -12,7 +12,7 @@ P = [0 for x in xrange(largo+1)]    #vector de polinomios
 
 I = [[0 for x in xrange(2)] for in xrange(2)] #Arreglo elementos
 
-F = [0 for x in xrange(largo)]      #arreglo vector F
+F = [0 for x in xrange(largo*2)]      #arreglo vector F
 
 #arreglo y otras constantes
 D = [0 for x in xrange(largo)]   #Arreglo de variables D
@@ -31,28 +31,29 @@ M=[]    #vector multidimensional
 
 
 #creación multimatrices
-for k in range(largo-1):
-    F[k] = (Q*L[k])/2
+for k in range(largo):
     for i in range(2):
         for j in range(2):
             I[i][j] = D[k]/L[k] + D[k]
     M.append(I)
 
+mod = 0
+cnt=0
+for j in range(largo*2):
+    F[j] = (Q*L[cnt])/2
+    if j%2==0:
+        cnt+=1
 
-#llenado vector
-in_ind=0
-for i in range(1,(largo-1)):
-    sn = "T"+str(in_nd)
-    sy = symbols(nd)
-    V[i] = sy    
-    in_ind += 1
+golbal= armaMatriz(M)
+
+c = np.linalg.solve(global, F)    #entrega resultado de vector x
+
+print(c)
 
 acm=0
 for i in range(largo+1):
     for j in range(largo+1):
         acm = acm + matriz[i][j]*I[j]
-
-
 
 def armaMatriz(A):#Funcion para armar la matriz global, usando las 3 matrices
     #generadas a partir de los 3 elementos
