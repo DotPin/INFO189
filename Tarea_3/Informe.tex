@@ -25,7 +25,7 @@
 
 Al correr el programa se obtiene el siguiente sistema de ecuaciones lineales
 
-\begin{figure}[!ht]{sistema}
+\begin{figure}[!h]
     \centering
     \[
     \begin{bmatrix}
@@ -52,7 +52,7 @@ Al correr el programa se obtiene el siguiente sistema de ecuaciones lineales
     \caption{Matriz de sistema lineal}
 
 \end{figure}
-Y resolviendo el sistema de ecuaciones lineales usando los valores de D, L y frontera, usando los valores por defecto se obtiene:
+Y resolviendo el sistema de ecuaciones lineales usando los valores de D, L y frontera por defecto se obtiene:
 \begin{figure}[!h]
     
     \[
@@ -66,16 +66,28 @@ Y resolviendo el sistema de ecuaciones lineales usando los valores de D, L y fro
     \caption{Vector de Solucion}
 \end{figure}
 
-Desarrollo de las matrices por método directo.
-
 \section{Programación}
 
 \subsection{Descripción General}
 Este informe describira el programa realizado para solucionar el problema descrito en el enunciado.\\
 El programa consta de varias funciones que en conjunto sirven para solucionar un problema de elementos finitos en una dimension.
-
+\newpage
 \subsection{Función Elemento}
-La siguiente figura describe la representacion matricial de un elemento de la figura.
+El siguiente segmento de codigo corresponde a la funcion para crear las funciones de cada elemento:
+\begin{verbatim}
+    def elementos():
+    for k in range(largo):
+        for i in range(2):
+            for j in range(2):
+                if(i==j):
+                    I[i][j] = D[k]/L[k]
+                else:
+                    I[i][j] = -(D[k]/L[k])
+        M.append(I)
+\end{verbatim}
+Esta funcion calcula cada ecuacion de cada elemento y las inserta en un arreglo.
+
+Las siguientes figuras describen la representacion matricial de los elementos de la figura.
 \begin{figure}[!h]
     \begin{equation}
         R^{(e)}=\left[ \begin{array}{cc}
@@ -100,22 +112,6 @@ La siguiente figura describe la representacion matricial de un elemento de la fi
         \caption{Funcion de elemento}
     \end{figure}
 
-\subsection{Función Global}
-Calculando las ecuaciones para todos los nodos y organizandolas como un sistema de ecuaciones lineales obtenemos
-\begin{figure}[!h]
-    \[
-        \begin{bmatrix}
-            {0.014*\Phi_0 - 0.014*\Phi_1}\\
-            {-0.014*\Phi_0 + 0.028*\Phi_1-0.014\Phi_2}\\
-            {-0.014*\Phi_1 + 0.028*\Phi_2 - 0.014*\Phi_3}\\
-            {-0.014*\Phi_2 + 0.014*\phi_3}
-        \end{bmatrix}
-    \]
-    \caption{Matriz global de ecuaciones lineales}
-    \end{figure}
-
-\subsection{Función Valores Nodales}
-megaderp
 \begin{table}[!h]
     \centering
         \begin{tabular}{@{}lllll@{}}
@@ -158,7 +154,102 @@ megaderp
     \end{equation}
     \caption{Funciones de forma de cada elemento}
 \end{figure}
+
 \newpage
+
+\subsection{Función Global}
+La funcion que genera la matriz global es :
+\begin{verbatim}
+    def armaMatriz(A):
+    MatrizComp = [[0.0 for x in xrange(len(A)+1)] for x in xrange(len(A)+1)]
+    for i in range(0,len(A)):
+        for j in range(0,2):
+            for k in range(0,2):
+                MatrizComp[i+j][i+k] = MatrizComp[i+j][i+k] + A[i][j][k]
+    return MatrizComp
+\end{verbatim}
+
+Esta funcion realiza la sumatoria de todas las funciones en la matriz global.
+
+
+
+El resultado de multiplicar esta matriz por el vector de incognitas es la siguiente matriz:
+
+\begin{figure}[!h]
+    \[
+        \begin{bmatrix}
+            {0.014*\Phi_0 - 0.014*\Phi_1}\\
+            {-0.014*\Phi_0 + 0.028*\Phi_1-0.014\Phi_2}\\
+            {-0.014*\Phi_1 + 0.028*\Phi_2 - 0.014*\Phi_3}\\
+            {-0.014*\Phi_2 + 0.014*\phi_3}
+        \end{bmatrix}
+    \]
+    \caption{Matriz global de ecuaciones lineales}
+    \end{figure}
+
+\subsection{Función Valores Nodales}
+La siguiente seccion de codigo corresponde a la funcion que calcula los valores nodales con los parametros especificados anteriormente
+
+\begin{verbatim}
+    def solucion():
+    cp = [x for x in V]
+    sol = solve(W[0].subs(V[0],20))
+    V[0] = FronteraA
+    V[1] = sol[0]+F[1]
+    print(V[0])
+    print(W)
+    for i in range(1,largo-1):
+        sol = solve(W[i].subs(cp[i-1],V[i-1]).subs(cp[i],V[i]).subs(cp[i+1],V[i+1]))
+        V[i+1]= sol[0]+F[i+2]
+    V[largo]=FronteraB
+    print(V)
+\end{verbatim}
+Esta funcion toma el arreglo de funciones obtenido anteriormente y calcula la solucion al sistema de ecuaciones.
+
+\begin{figure}[!h]
+    \centering
+    \[
+    \begin{bmatrix}
+        {0.014} & {-0.014} & {0.0} & {0.0}\\
+        {-0.014} & {0.028} & {-0.014} & {0.0}\\
+        {0.0} & {-0.014} & {0.028} & {-0.014}\\
+        {0.0} & {0.0} & {-0.014} & {0.014}\\
+    \end{bmatrix}
+    *
+    \begin{bmatrix}
+        {\Phi_0}\\
+        {\Phi_1}\\
+        {\Phi_2}\\
+        {\Phi_3}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        {0}\\
+        {0}\\
+        {0}\\
+        {0}
+    \end{bmatrix}
+    \]
+    \caption{Matriz de sistema lineal}
+
+\end{figure}
+\newpage
+
+Finalmente el resultado final de la funcion es:
+
+\begin{figure}[!h]
+    
+    \[
+        \begin{bmatrix}
+            {\Phi_0 = 20}\\
+            {\Phi_1 = 20}\\
+            {\Phi_2 = 20}\\
+            {\Phi_3 = -15}
+        \end{bmatrix}
+    \]
+    \caption{Vector de Solucion}
+\end{figure}
+
 \subsection{Función Conductividad}
 Las siguientes figuras describen la equacion de Conductividad.
 \begin{figure}[!h]

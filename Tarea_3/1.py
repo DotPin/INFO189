@@ -140,7 +140,7 @@ def fun_f():
     F[len(F)-1] = (Q*L[j])/2
   
 #genero polinomios de la multiplicacion Matriz(A)*Vector(X), con A, matriz de emsamble, y X vector de incógnitas
-def poliniomios():
+def polinomios():
     for i in range(largo+1):
         for j in range(largo+1):
             W[i] = gb[i][j]*V[j] + W[i]
