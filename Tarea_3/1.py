@@ -154,17 +154,10 @@ print(W)
 for i in range(1,largo-1):
     sol = solve(W[i].subs(cp[i-1],V[i-1]).subs(cp[i],V[i]).subs(cp[i+1],V[i+1]))
     V[i+1]= sol[0]+F[i+2]
-<<<<<<< HEAD
 V[largo]=FronteraB
 print(V)
 
 
 #c = np.linalg.solve(gb, F)    #entrega resultado de vector x
-=======
-V[largo]=-15
-
-print(V)
-
->>>>>>> 3e4aaeabb427ad12fca890286b514e3551b2996c
 
 
