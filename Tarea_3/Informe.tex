@@ -56,7 +56,7 @@ Y resolviendo el sistema de ecuaciones lineales usando los valores de D, L y fro
 \begin{figure}[!h]
     
     \[
-        \begin{bmatrix}{lineales}
+        \begin{bmatrix}
             {\Phi_0 = 20}\\
             {\Phi_1 = 20}\\
             {\Phi_2 = 20}\\
@@ -101,10 +101,10 @@ La siguiente figura describe la representacion matricial de un elemento de la fi
     \end{figure}
 
 \subsection{Función Global}
-watafak
+Calculando las ecuaciones para todos los nodos y organizandolas como un sistema de ecuaciones lineales obtenemos
 \begin{figure}[!h]
     \[
-        \begin{bmatrix}{global}
+        \begin{bmatrix}
             {0.014*\Phi_0 - 0.014*\Phi_1}\\
             {-0.014*\Phi_0 + 0.028*\Phi_1-0.014\Phi_2}\\
             {-0.014*\Phi_1 + 0.028*\Phi_2 - 0.014*\Phi_3}\\
@@ -127,8 +127,40 @@ megaderp
     \end{tabular}
     \caption{Tabla de valores nodales}
 \end{table}
+
+\begin{figure}[!h]
+    \begin{equation}
+        \left [ k^{1} \right ]= \begin{bmatrix}
+        \frac{1}{65} & -\frac{1}{65}\\ 
+        -\frac{1}{65} & \frac{1}{65}
+        \end{bmatrix}\phantom{a},\phantom{a}
+        \left \{ f \right \}=\begin{bmatrix}
+        0.01\\0.01
+        \end{bmatrix}
+    \end{equation}
+    \begin{equation}
+        \left [ k^{2} \right ]= \begin{bmatrix}
+        \frac{1}{1600} & -\frac{1}{1600}\\ 
+        -\frac{1}{1600} & \frac{1}{1600}
+        \end{bmatrix}\phantom{a},\phantom{a}
+        \left \{ f \right \}=\begin{bmatrix}
+        4\\4
+        \end{bmatrix}
+    \end{equation}
+    \begin{equation}
+        \left [ k^{3} \right ]= \begin{bmatrix}
+        \frac{7}{500} & -\frac{7}{500}\\ 
+        -\frac{7}{500} & \frac{7}{500}
+        \end{bmatrix}\phantom{a},\phantom{a}
+        \left \{ f \right \}=\begin{bmatrix}
+        1.25\\1.25
+        \end{bmatrix}
+    \end{equation}
+    \caption{Funciones de forma de cada elemento}
+\end{figure}
+\newpage
 \subsection{Función Conductividad}
-ultrarage
+Las siguientes figuras describen la equacion de Conductividad.
 \begin{figure}[!h]
     \begin{equation}
         N_{e}=
@@ -140,6 +172,9 @@ ultrarage
             0 & 0 & 1 & 0 \\
             0 & 0 & 0 & 1
             \end{array}\right]
+    \end{equation}
+    \begin{equation}
+        f(T) = N_{1} T_{0} + N_{2} T_{1} + N_{3} T_{2} + N_{4} T_{3}
     \end{equation}
 \end{figure}
 

@@ -153,8 +153,7 @@ def solucion():
     V[0] = FronteraA
     V[1] = sol[0]+F[1]
     print(V[0])
-    for a in W:
-        print(W)
+    print(W)
     for i in range(1,largo-1):
         sol = solve(W[i].subs(cp[i-1],V[i-1]).subs(cp[i],V[i]).subs(cp[i+1],V[i+1]))
         V[i+1]= sol[0]+F[i+2]
