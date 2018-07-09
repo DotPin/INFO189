@@ -93,7 +93,7 @@ V = [0.0 for x in xrange(largo+1)]  # vector incognitas
 
 W = [0.0 for x in xrange(largo+1)] #Vector polinomico
 
-
+#genera matriz de symbolic
 in_nd=0
 for k in range(largo+1):
     nd = "T"+str(in_nd)                 
@@ -126,6 +126,7 @@ def armaMatriz(A):#Funcion para armar la matriz global, usando las 3 matrices
                 MatrizComp[i+j][i+k] = MatrizComp[i+j][i+k] + A[i][j][k]
     return MatrizComp
 
+
 F[0]=(Q*L[0])/2
 
 for j in range(1,largo-1):
@@ -137,10 +138,13 @@ gb = []
 gb = armaMatriz(M)
 print (gb)
 
+#guardo polinimios generados a través de los nodos
 for i in range(largo+1):
     for j in range(largo+1):
         W[i] = gb[i][j]*V[j] + W[i]
 
+
+#Solución del sistema lineal mediante sustitución regresiva
 cp = [x for x in V]
 sol = solve(W[0].subs(V[0],20))
 V[0] = FronteraA
@@ -150,11 +154,17 @@ print(W)
 for i in range(1,largo-1):
     sol = solve(W[i].subs(cp[i-1],V[i-1]).subs(cp[i],V[i]).subs(cp[i+1],V[i+1]))
     V[i+1]= sol[0]+F[i+2]
+<<<<<<< HEAD
 V[largo]=FronteraB
 print(V)
 
 
 #c = np.linalg.solve(gb, F)    #entrega resultado de vector x
+=======
+V[largo]=-15
 
-#print(c)
+print(V)
+
+>>>>>>> 3e4aaeabb427ad12fca890286b514e3551b2996c
+
 
