@@ -27,9 +27,38 @@
         {0.0} & {-0.014} & {0.028} & {-0.014}\\
         {0.0} & {0.0} & {-0.014} & {0.014}\\
     \end{bmatrix}
+    *
+    \begin{bmatrix}
+        {\Phi_0}\\
+        {\Phi_1}\\
+        {\Phi_2}\\
+        {\Phi_3}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        {0}\\
+        {0}\\
+        {0}\\
+        {0}
+    \end{bmatrix}
     \]
-    \caption{Matriz de Resolucion}
+    \caption{Matriz de sistema lineal}
+
 \end{figure}
+Y resolviendo el sistema de ecuaciones lineales usando los valores de D, L y frontera por defecto se obtiene:
+\begin{figure}[!ht]
+    
+    \[
+        \begin{bmatrix}
+            {\Phi_0 = 20}\\
+            {\Phi_1 = 20}\\
+            {\Phi_2 = 20}\\
+            {\Phi_3 = -15}
+        \end{bmatrix}
+    \]
+    \caption{Vector de Solucion}
+\end{figure}
+
 Desarrollo de las matrices por método directo.
 
 \section{Programación}
