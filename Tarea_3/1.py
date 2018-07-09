@@ -65,13 +65,9 @@ while True:
     if (temp =='no' or temp =='No'):
         break
 
-V = [0 for x in xrange(largo+1)]  # vector de nodos
-
-P = [0 for x in xrange(largo+1)]  # vector de polinomios
-
 I = [[0 for x in xrange(2)] for x in xrange(2)]  # Arreglo elementos
 
-F = [0 for x in xrange(largo)]  # arreglo vector F
+F = [0 for x in xrange(largo+1)]  # arreglo vector F
 
 
 Q = 1  # valor temperatura ambiente
