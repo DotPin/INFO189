@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
+from sympy import *
 
 # Valores por defecto van aqui
 
@@ -65,17 +66,24 @@ while True:
     if (temp =='no' or temp =='No'):
         break
 
-I = [[0 for x in xrange(2)] for x in xrange(2)]  # Arreglo elementos
+I = [[0.0 for x in xrange(2)] for x in xrange(2)]  # Arreglo elementos
 
-F = [0 for x in xrange(largo+1)]  # arreglo vector F
+F = [0.0 for x in xrange(largo+1)]  # arreglo vector F
+
+V = [0.0 for x in xrange(largo+1)]  # vector incognitas
+
+W = [0.0 for x in xrange(largo+1)] #Vector polinomico
 
 
-Q = 1  # valor temperatura ambiente
+in_nd=0
+for k in range(largo+1):
+    nd = "T"+str(in_nd)                 
+    V[k] = Symbol(nd)
+    in_nd += 1		#numerará los nodos uno x uno hasta terminar cada celda del mallado
+    print(nd)
 
 
-# condiciones de borde
-#I[0] = 20
-#I[3] = -15
+Q = 0  # valor temperatura ambiente
 
 M = []  # vector multidimensional
 
@@ -83,7 +91,10 @@ M = []  # vector multidimensional
 for k in range(largo):
     for i in range(2):
         for j in range(2):
-            I[i][j] = D[k]/L[k]
+            if(i==j):
+                I[i][j] = D[k]/L[k]
+            else:
+                I[i][j] = -(D[k]/L[k])
     M.append(I)
 
 
@@ -98,7 +109,7 @@ def armaMatriz(A):#Funcion para armar la matriz global, usando las 3 matrices
 
 F[0]=(Q*L[0])/2
 
-for j in range(largo):
+for j in range(1,largo-1):
     F[j+1] = F[j] + (Q*L[j])/2
 
 F[len(F)-1] = (Q*L[j])/2
@@ -106,11 +117,25 @@ F[len(F)-1] = (Q*L[j])/2
 gb = []
 gb = armaMatriz(M)
 
-print(gb)
-print(F)
+for i in range(largo+1):
+    for j in range(largo+1):
+        W[i] = gb[i][j]*V[j] + W[i]
+
+cp = [x for x in V]
+sol = solve(W[0].subs(V[0],20))
+V[0] = 20
+V[1] = sol[0]+F[1]
+print(V[1])
+print(W)
+for i in range(1,largo-1):
+    sol = solve(W[i].subs(cp[i-1],V[i-1]).subs(cp[i],V[i]).subs(cp[i+1],V[i+1]))
+    V[i+1]= sol[0]+F[i+2]
+V[largo]=-15
+print(V)
 
 
-c = np.linalg.solve(gb, F)    #entrega resultado de vector x
 
-print(c)
+#c = np.linalg.solve(gb, F)    #entrega resultado de vector x
+
+#print(c)
 
