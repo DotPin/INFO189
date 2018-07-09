@@ -13,6 +13,9 @@ D = [0.02, 0.005, 0.0035]  # Arreglo de variables D
 
 L = [1.3, 8, 2.5]  # Arreglo de L
 
+FronteraA = 1
+FronteraB = -15
+
 while True:
     temp = raw_input("Si/No editar variables: ")
     if temp not in ('si','Si','no','No'):
@@ -62,6 +65,22 @@ while True:
                     counter = counter + 1
                     L.append(temp)
                     break
+        while True:
+            try:
+                temp = float(raw_input("Ingrese primer valor de frontera: "))
+            except ValueError:
+                print("Ingrese un numero valido.")
+                continue
+            FronteraA = temp
+            break
+        while True:
+            try:
+                temp = float(raw_input("Ingrese segundo valor de frontera: "))
+            except ValueError:
+                print("Ingrese un numero valido.")
+                continue
+            FronteraB = temp
+            break
         break
     if (temp =='no' or temp =='No'):
         break
@@ -116,6 +135,7 @@ F[len(F)-1] = (Q*L[j])/2
     
 gb = []
 gb = armaMatriz(M)
+print (gb)
 
 for i in range(largo+1):
     for j in range(largo+1):
@@ -123,16 +143,15 @@ for i in range(largo+1):
 
 cp = [x for x in V]
 sol = solve(W[0].subs(V[0],20))
-V[0] = 20
+V[0] = FronteraA
 V[1] = sol[0]+F[1]
-print(V[1])
+print(V[0])
 print(W)
 for i in range(1,largo-1):
     sol = solve(W[i].subs(cp[i-1],V[i-1]).subs(cp[i],V[i]).subs(cp[i+1],V[i+1]))
     V[i+1]= sol[0]+F[i+2]
-V[largo]=-15
+V[largo]=FronteraB
 print(V)
-
 
 
 #c = np.linalg.solve(gb, F)    #entrega resultado de vector x
