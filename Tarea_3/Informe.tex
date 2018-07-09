@@ -10,15 +10,22 @@
 
 \usepackage{natbib}
 \usepackage{graphicx}
+\usepackage{booktabs}
 
 \begin{document}
 
 \maketitle
 
+
+\newpage
+
+
 %\textbf{Nombre:}
 \section{Resolución}
 
-\begin{figure}[!ht]
+Al correr el programa se obtiene el siguiente sistema de ecuaciones lineales
+
+\begin{figure}[!ht]{sistema}
     \centering
     \[
     \begin{bmatrix}
@@ -45,11 +52,11 @@
     \caption{Matriz de sistema lineal}
 
 \end{figure}
-Y resolviendo el sistema de ecuaciones lineales usando los valores de D, L y frontera por defecto se obtiene:
-\begin{figure}[!ht]
+Y resolviendo el sistema de ecuaciones lineales usando los valores de D, L y frontera, usando los valores por defecto se obtiene:
+\begin{figure}[!h]
     
     \[
-        \begin{bmatrix}
+        \begin{bmatrix}{lineales}
             {\Phi_0 = 20}\\
             {\Phi_1 = 20}\\
             {\Phi_2 = 20}\\
@@ -64,10 +71,76 @@ Desarrollo de las matrices por método directo.
 \section{Programación}
 
 \subsection{Descripción General}
-Este informe describira el programa realizado para solucionar el problema descrito en el enunciado
+Este informe describira el programa realizado para solucionar el problema descrito en el enunciado.\\
+El programa consta de varias funciones que en conjunto sirven para solucionar un problema de elementos finitos en una dimension.
+
 \subsection{Función Elemento}
+La siguiente figura describe la representacion matricial de un elemento de la figura.
+\begin{figure}[!h]
+    \begin{equation}
+        R^{(e)}=\left[ \begin{array}{cc}
+            \Phi i  \\
+            \Phi j
+            \end{array}\right]+\frac{D}{L}
+            \left[\begin{array}{cccc}
+                1 & 1 \\
+                1 & 1
+                \end{array}
+            \right]
+            \left\lbrace \begin{array}{cc}
+                \Phi i  \\
+                \Phi j
+                \end{array}\right\rbrace
+                *
+                \frac {QL}{2} \left[ \begin{array}{cccc}
+                    1  \\
+                    1
+                    \end{array}\right]
+        \end{equation}
+        \caption{Funcion de elemento}
+    \end{figure}
+
 \subsection{Función Global}
+watafak
+\begin{figure}[!h]
+    \[
+        \begin{bmatrix}{global}
+            {0.014*\Phi_0 - 0.014*\Phi_1}\\
+            {-0.014*\Phi_0 + 0.028*\Phi_1-0.014\Phi_2}\\
+            {-0.014*\Phi_1 + 0.028*\Phi_2 - 0.014*\Phi_3}\\
+            {-0.014*\Phi_2 + 0.014*\phi_3}
+        \end{bmatrix}
+    \]
+    \caption{Matriz global de ecuaciones lineales}
+    \end{figure}
+
 \subsection{Función Valores Nodales}
+megaderp
+\begin{table}[!h]
+    \centering
+        \begin{tabular}{@{}lllll@{}}
+        \toprule
+        $e$ & $i$ & $j$ & D/L    & QL/2 \\ \midrule
+        1 & 1 & 2 & 1/65   & 0    \\
+        2 & 2 & 3 & 1/1600 & 0    \\
+        3 & 3 & 4 & 7/500  & 0    \\ \bottomrule
+    \end{tabular}
+    \caption{Tabla de valores nodales}
+\end{table}
 \subsection{Función Conductividad}
+ultrarage
+\begin{figure}[!h]
+    \begin{equation}
+        N_{e}=
+        \left(
+            \frac {D}{L}\right) ^{(e)}
+        \left[ \begin{array}{cccc}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 1
+            \end{array}\right]
+    \end{equation}
+\end{figure}
 
 \end{document}
