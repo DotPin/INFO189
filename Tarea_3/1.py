@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import numpy as np
 from sympy import *
 
 # Valores por defecto van aqui
@@ -13,7 +12,7 @@ D = [0.02, 0.005, 0.0035]  # Arreglo de variables D
 
 L = [1.3, 8, 2.5]  # Arreglo de L
 
-FronteraA = 1
+FronteraA = 20
 FronteraB = -15
 
 while True:
@@ -93,32 +92,38 @@ V = [0.0 for x in xrange(largo+1)]  # vector incognitas
 
 W = [0.0 for x in xrange(largo+1)] #Vector polinomico
 
-#genera matriz de symbolic
-in_nd=0
-for k in range(largo+1):
-    nd = "T"+str(in_nd)                 
-    V[k] = Symbol(nd)
-    in_nd += 1		#numerará los nodos uno x uno hasta terminar cada celda del mallado
-    print(nd)
-
-
 Q = 0  # valor temperatura ambiente
 
 M = []  # vector multidimensional
 
-#creación multimatrices
-for k in range(largo):
-    for i in range(2):
-        for j in range(2):
-            if(i==j):
-                I[i][j] = D[k]/L[k]
-            else:
-                I[i][j] = -(D[k]/L[k])
-    M.append(I)
+gb = [] # Matriz ensamble
 
 
-def armaMatriz(A):#Funcion para armar la matriz global, usando las 3 matrices
-    #generadas a partir de los 3 elementos
+
+#genera vector de incógnitas nodales, para solución final
+def init_v():
+    in_nd=0
+    for k in range(largo+1):
+        nd = "T"+str(in_nd)                 
+        V[k] = Symbol(nd)
+        in_nd += 1		#numerará los nodos uno x uno hasta terminar cada celda del mallado
+        
+
+#creación multimatrices, permite apilar las submatrices de cada elemento
+def elementos():
+    for k in range(largo):
+        for i in range(2):
+            for j in range(2):
+                if(i==j):
+                    I[i][j] = D[k]/L[k]
+                else:
+                    I[i][j] = -(D[k]/L[k])
+        M.append(I)
+
+
+#Funcion para armar la matriz global, usando las 3 matrices
+#generadas a partir de los 3 elementos
+def armaMatriz(A):
     MatrizComp = [[0.0 for x in xrange(len(A)+1)] for x in xrange(len(A)+1)]
     for i in range(0,len(A)):
         for j in range(0,2):
@@ -126,38 +131,42 @@ def armaMatriz(A):#Funcion para armar la matriz global, usando las 3 matrices
                 MatrizComp[i+j][i+k] = MatrizComp[i+j][i+k] + A[i][j][k]
     return MatrizComp
 
+#función de constantes lineales para el sistema lineal
+def fun_f():
+    F[0]=(Q*L[0])/2
+    for j in range(1,largo-1):
+        F[j+1] = F[j] + (Q*L[j])/2
 
-F[0]=(Q*L[0])/2
+    F[len(F)-1] = (Q*L[j])/2
+  
+#genero polinomios de la multiplicacion Matriz(A)*Vector(X), con A, matriz de emsamble, y X vector de incógnitas
+def poliniomios():
+    for i in range(largo+1):
+        for j in range(largo+1):
+            W[i] = gb[i][j]*V[j] + W[i]
 
-for j in range(1,largo-1):
-    F[j+1] = F[j] + (Q*L[j])/2
 
-F[len(F)-1] = (Q*L[j])/2
-    
-gb = []
+#Solución del sistema lineal mediante sustitución progresiva, "Regla de Cramer"
+def solucion():
+    cp = [x for x in V]
+    sol = solve(W[0].subs(V[0],20))
+    V[0] = FronteraA
+    V[1] = sol[0]+F[1]
+    print(V[0])
+    for a in W:
+        print(W)
+    for i in range(1,largo-1):
+        sol = solve(W[i].subs(cp[i-1],V[i-1]).subs(cp[i],V[i]).subs(cp[i+1],V[i+1]))
+        V[i+1]= sol[0]+F[i+2]
+    V[largo]=FronteraB
+    print(V)
+
+init_v()
+elementos()
 gb = armaMatriz(M)
-print (gb)
+fun_f()
+poliniomios()
+solucion()
 
-#guardo polinimios generados a través de los nodos
-for i in range(largo+1):
-    for j in range(largo+1):
-        W[i] = gb[i][j]*V[j] + W[i]
-
-
-#Solución del sistema lineal mediante sustitución regresiva
-cp = [x for x in V]
-sol = solve(W[0].subs(V[0],20))
-V[0] = FronteraA
-V[1] = sol[0]+F[1]
-print(V[0])
-print(W)
-for i in range(1,largo-1):
-    sol = solve(W[i].subs(cp[i-1],V[i-1]).subs(cp[i],V[i]).subs(cp[i+1],V[i+1]))
-    V[i+1]= sol[0]+F[i+2]
-V[largo]=FronteraB
-print(V)
-
-
-#c = np.linalg.solve(gb, F)    #entrega resultado de vector x
 
 
