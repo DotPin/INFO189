@@ -160,12 +160,39 @@ def solucion():
     V[largo]=FronteraB
     print(V)
 
+def lagrange(xi,xj,i,x,fi):
+    a = float(xj-x)
+    b = float(xj-xi)
+    c = float(x-xi)
+    f1 = float((a/b)*fi[i])
+    f2 = float((c/b)*fi[i+1])
+    return f1+f2
+
+
+def conduccion(y):
+    k=0
+    acm = 0
+    acm2 = 0
+    for i in range(len(V)):
+        acm2 = acm2 + L[i]
+        if y <= acm2:
+            print(acm)
+            print(acm2)
+            k = lagrange(acm,acm2,i-1,y,V)
+            break
+        acm = acm2
+    print("Resultado valor de conduccion en coornada {0} es: {1} ").format(y,k)
+    
+
+x = float(input("ingrese valor: "))
+
+
 init_v()
 elementos()
 gb = armaMatriz(M)
 fun_f()
 poliniomios()
 solucion()
-
+conduccion(x)
 
 
