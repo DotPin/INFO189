@@ -186,10 +186,9 @@ def conduccion(y):
 largoBarra = 0
 for i in range(largo):
     largoBarra = largoBarra+L[i]
-print(largoBarra)
 while True:
     try:
-        x = float(raw_input("ingrese valor: "))
+        x = float(raw_input("ingrese valor de x a encontrar, que se encuentre en el largo de la barra ("+str(largoBarra)+":)"))
     except ValueError:
         print("Ingrese un valor que se encuentro dentro del largo de la barra: "+str(largoBarra))
         continue
