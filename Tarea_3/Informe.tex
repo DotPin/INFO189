@@ -173,19 +173,7 @@ Esta funcion realiza la sumatoria de todas las funciones en la matriz global.
 
 
 
-El resultado de multiplicar esta matriz por el vector de incognitas es la siguiente matriz:
 
-\begin{figure}[!h]
-    \[
-        \begin{bmatrix}
-            {0.014*\Phi_0 - 0.014*\Phi_1}\\
-            {-0.014*\Phi_0 + 0.028*\Phi_1-0.014\Phi_2}\\
-            {-0.014*\Phi_1 + 0.028*\Phi_2 - 0.014*\Phi_3}\\
-            {-0.014*\Phi_2 + 0.014*\phi_3}
-        \end{bmatrix}
-    \]
-    \caption{Matriz global de ecuaciones lineales}
-    \end{figure}
 
 \subsection{Función Valores Nodales}
 La siguiente seccion de codigo corresponde a la funcion que calcula los valores nodales con los parametros especificados anteriormente
@@ -251,22 +239,19 @@ Finalmente el resultado final de la funcion es:
 \end{figure}
 
 \subsection{Función Conductividad}
-Las siguientes figuras describen la equacion de Conductividad.
+
+El resultado de multiplicar esta matriz por el vector de incognitas es la siguiente matriz:
+Estos resultados se obtienen usando como condiciones iniciales de frontera iguales a 0 y los otros valores por defecto
 \begin{figure}[!h]
-    \begin{equation}
-        N_{e}=
-        \left(
-            \frac {D}{L}\right) ^{(e)}
-        \left[ \begin{array}{cccc}
-            1 & 0 & 0 & 0 \\
-            0 & 1 & 0 & 0 \\
-            0 & 0 & 1 & 0 \\
-            0 & 0 & 0 & 1
-            \end{array}\right]
-    \end{equation}
-    \begin{equation}
-        f(T) = N_{1} T_{0} + N_{2} T_{1} + N_{3} T_{2} + N_{4} T_{3}
-    \end{equation}
-\end{figure}
+    \[
+        \begin{bmatrix}
+            {0.014*\Phi_0 - 0.014*\Phi_1}\\
+            {-0.014*\Phi_0 + 0.028*\Phi_1-0.014\Phi_2}\\
+            {-0.014*\Phi_1 + 0.028*\Phi_2 - 0.014*\Phi_3}\\
+            {-0.014*\Phi_2 + 0.014*\phi_3}
+        \end{bmatrix}
+    \]
+    \caption{Matriz global de ecuaciones lineales}
+    \end{figure}
 
 \end{document}
