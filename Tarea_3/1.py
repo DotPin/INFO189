@@ -164,8 +164,8 @@ def lagrange(xi,xj,i,x,fi):
     a = float(xj-x)
     b = float(xj-xi)
     c = float(x-xi)
-    f1 = float((a/b)*fi[i])
-    f2 = float((c/b)*fi[i+1])
+    f1 = float((a/b)*fi[i+1])
+    f2 = float((c/b)*fi[i+2])
     return f1+f2
 
 
@@ -173,7 +173,7 @@ def conduccion(y):
     k=0
     acm = 0
     acm2 = 0
-    for i in range(len(V)):
+    for i in range(len(L)):
         acm2 = acm2 + L[i]
         if y <= acm2:
             print(acm)
@@ -181,7 +181,7 @@ def conduccion(y):
             k = lagrange(acm,acm2,i-1,y,V)
             break
         acm = acm2
-    print("Resultado valor de conduccion en coornada {0} es: {1} ").format(y,k)
+    print("Resultado valor de conduccion en coordenada {0} es: {1} ").format(y,k)
     
 largoBarra = 0
 for i in range(largo):
@@ -196,7 +196,7 @@ while True:
     if (x<0 or x>largoBarra):
         print("Ingrese un valor que se encuentro dentro del largo de la barra: "+str(largoBarra))
         continue
-    if(x>0 and x<largoBarra):
+    if(x>=0 and x<=largoBarra):
         break
 
 
@@ -204,7 +204,7 @@ init_v()
 elementos()
 gb = armaMatriz(M)
 fun_f()
-poliniomios()
+polinomios()
 solucion()
 conduccion(x)
 
