@@ -183,8 +183,21 @@ def conduccion(y):
         acm = acm2
     print("Resultado valor de conduccion en coornada {0} es: {1} ").format(y,k)
     
-
-x = float(input("ingrese valor: "))
+largoBarra = 0
+for i in range(largo):
+    largoBarra = largoBarra+L[i]
+print(largoBarra)
+while True:
+    try:
+        x = float(raw_input("ingrese valor: "))
+    except ValueError:
+        print("Ingrese un valor que se encuentro dentro del largo de la barra: "+str(largoBarra))
+        continue
+    if (x<0 or x>largoBarra):
+        print("Ingrese un valor que se encuentro dentro del largo de la barra: "+str(largoBarra))
+        continue
+    if(x>0 and x<largoBarra):
+        break
 
 
 init_v()
