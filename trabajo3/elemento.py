@@ -179,10 +179,17 @@ f12 = ((h1*Tf1*12.5)/2)*np.array([0,0,1,0])
 f14 = ((h1*Tf1*17.5)/2)*np.array([0,1,0,0])
 f16 = ((h1*Tf1*17.5)/2)*np.array([0,1,0,0])
 
+
 f1 = ((h2*Tf2*0.2)/2)*np.array([1,1,0])
 f2 = ((h2*Tf2*0.2)/2)*np.array([1,1,0])
 f3 = ((h2*Tf2*0.2)/2)*np.array([1,0,1])
 f7 = ((h2*Tf2*0.2)/2)*np.array([1,0,1])
+
+f9 = ((h2*Tf2*12.5)/2)*np.array([1,1,0,0])
+f10 = ((h2*Tf2*12.5)/2)*np.array([1,1,0,0])
+f13 = ((h2*Tf2*17.5)/2)*np.array([1,0,0,1])
+f15 = ((h2*Tf2*17.5)/2)*np.array([1,0,0,1])
+
 
 
 #Matriz ensamble de elementos K
@@ -225,7 +232,7 @@ def matrizEndamble():
         print "\n"
     print("***************FIN Matriz Ensamble************\n\n")
     
-F = np.zeros(12)        
+F = np.zeros(21)        
 #Vector de termincidad F
 for i in range(0,len(e5)):
     F[e5[i]-1]+=f5[i]
@@ -235,6 +242,10 @@ for i in range(0,len(e1)):
     F[e12[i]-1]+=f12[i]
     F[e14[i]-1]+=f14[i]
     F[e16[i]-1]+=f16[i]
+    F[e9[i]-1]+=f9[i]
+    F[e10[i]-1]+=f10[i]
+    F[e13[i]-1]+=f13[i]
+    F[e15[i]-1]+=f15[i]
 
 for i in range(0,12):#borrar filas,valores conocidos, temperatura interna chimenea
         MT[2][i]=0
