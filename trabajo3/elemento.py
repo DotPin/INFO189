@@ -179,13 +179,17 @@ f12 = ((h1*Tf1*12.5)/2)*np.array([0,0,1,0])
 f14 = ((h1*Tf1*17.5)/2)*np.array([0,0,1,0])
 f16 = ((h1*Tf1*17.5)/2)*np.array([0,0,1,0])
 
+
+f1 = ((h2*Tf2*0.2)/2)*np.array([1,1,0])
+f2 = ((h2*Tf2*0.2)/2)*np.array([1,1,0])
+f3 = ((h2*Tf2*0.2)/2)*np.array([1,0,1])
+f7 = ((h2*Tf2*0.2)/2)*np.array([1,0,1])
+
 f9 = ((h2*Tf2*12.5)/2)*np.array([1,1,0,0])
 f10 = ((h2*Tf2*12.5)/2)*np.array([1,1,0,0])
 f13 = ((h2*Tf2*17.5)/2)*np.array([1,0,0,1])
 f15 = ((h2*Tf2*17.5)/2)*np.array([1,0,0,1])
 
-f5 = ((20*50*0.2)/2)*np.array([1,0,1])
-f6 = ((20*30*0.2)/2)*np.array([0,1,1])
 
 
 #Matriz ensamble de elementos K
@@ -194,8 +198,18 @@ MT = np.zeros((21,21))
 #Matriz k general
 for i in range(0,len(kd5)):#fila
     for j in range(0,len(kd5)):#columna
-         MT[e5[i]-1][e5[j]-1]+=kd5[i][j]+kc5[i][j]
-         MT[e6[i]-1][e6[j]-1]+=kd6[i][j]+kc6[i][j]    
+         MT[e1[i]-1][e1[j]-1]+=kd1[i][j]+kc1[i][j]
+         MT[e2[i]-1][e2[j]-1]+=kd2[i][j]+kc2[i][j]    
+         MT[e3[i]-1][e3[j]-1]+=kd3[i][j]+kc3[i][j]    
+         MT[e4[i]-1][e4[j]-1]+=kd4[i][j]
+         
+         MT[e5[i]-1][e5[j]-1]+=kd5[i][j]
+         MT[e6[i]-1][e6[j]-1]+=kd6[i][j]
+         MT[e7[i]-1][e7[j]-1]+=kd7[i][j]+kc7[i][j]    
+         MT[e8[i]-1][e8[j]-1]+=kd8[i][j]
+         
+         
+         
 
 for i in range(0, len(kd9)):#fila
     for j in range(0, len(kd9)):#columna
