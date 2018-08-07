@@ -73,17 +73,29 @@ def elementoTriangular(b):
 
 
 #matrices de conduccion x elemento
-kd1 = (kx/6)*(nx+ny)
-e1 = np.array([1,2,5,4])
+kd9 = ((0.08*nx) + ((2/9)*ny))
+e9 = np.array([3,4,9,8])
 
-kd2 = (kx/6)*(nx+ny)
-e2 = np.array([2,3,6,5])
+kd10 = ((0.08*nx) + ((2/9)*ny))
+e10 = np.array([4,5,10,9])
 
-kd3 = (kx/6)*(nx+ny)
-e3 = np.array([6,7,9,8])
+kd11 = ((0.08*nx) + ((2/9)*ny))
+e11 = np.array([8,9,14,13])
 
-kd4 = (kx/6)*(nx+ny)
-e4 = np.array([8,9,12,11])
+kd12 = ((0.08*nx) + ((2/9)*ny))
+e12 = np.array([9,10,15,14])
+
+kd13 = ((14/45*nx) + ((2/35)*ny))
+e13 = np.array([11,12,17,16])
+
+kd14 = ((14/45*nx) + ((2/35)*ny))
+e14 = np.array([12,13,18,17])
+
+kd15 = ((14/45*nx) + ((2/35)*ny))
+e15 = np.array([16,17,20,19])
+
+kd16 = ((14/45*nx) + ((2/35)*ny))
+e16 = np.array([17,18,21,20])
 
 kd5 = (kx/(area*0.2))*(trX1+trY1)
 e5 = np.array([4,6,10])
