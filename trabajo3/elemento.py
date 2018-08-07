@@ -261,16 +261,17 @@ for i in range(0,len(e11)):
 for i in range(0,21):#borrar filas,valores conocidos, temperatura interna chimenea
         MT[14][i]=0
         MT[13][i]=0
-        MT[12][i]=0
-        MT[11][i]=0
+        MT[5][i]=0
         MT[20][i]=0
         MT[17][i]=0
         
         
         
-MT[2][2]=1
-MT[5][5]=1
-MT[6][6]=1      
+MT[14][14]=1
+MT[13][13]=1
+MT[5][5]=1      
+MT[20][20]=1
+MT[17][17]=1
 
 matrizEndamble()
 c = np.linalg.solve(MT, F)
