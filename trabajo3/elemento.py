@@ -184,12 +184,17 @@ for i in range(0,len(kd5)):#fila
          MT[e5[i]-1][e5[j]-1]+=kd5[i][j]+kc5[i][j]
          MT[e6[i]-1][e6[j]-1]+=kd6[i][j]+kc6[i][j]    
 
-for i in range(0, len(kd1)):#fila
-    for j in range(0, len(kd1)):#columna
-        MT[e1[i]-1][e1[j]-1]+=kd1[i][j]+kc1[i][j]
-        MT[e2[i]-1][e2[j]-1]+=kd2[i][j]
-        MT[e3[i]-1][e3[j]-1]+=kd3[i][j]
-        MT[e4[i]-1][e4[j]-1]+=kd4[i][j]+kc4[i][j]
+for i in range(0, len(kd9)):#fila
+    for j in range(0, len(kd9)):#columna
+        MT[e9[i]-1][e9[j]-1]+=kd9[i][j]+kc9[i][j]
+        MT[e11[i]-1][e11[j]-1]+=kd11[i][j]
+        MT[e12[i]-1][e12[j]-1]+=kd12[i][j]
+        MT[e10[i]-1][e10[j]-1]+=kd10[i][j]+kc10[i][j]
+
+        MT[e13[i]-1][e13[j]-1]+=kd13[i][j]+kc13[i][j]
+        MT[e14[i]-1][e14[j]-1]+=kd14[i][j]
+        MT[e16[i]-1][e16[j]-1]+=kd16[i][j]
+        MT[e15[i]-1][e15[j]-1]+=kd15[i][j]+kc15[i][j]
 
 def matrizEndamble():
     print("\n\n***************MAtriz Ensamble************\n")
