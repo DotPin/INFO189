@@ -42,7 +42,7 @@ t7 = np.array([[0,0],[7.5,7.5],[0,7.5]])
 t8 = np.array([[0,0],[7.5,7.5],[0,7.5]])
 
 
-#matrices factores para triangulo e5 y e6 respectivamente
+#matrices factores para triangulo respectivamente
 trX1=[]
 trY1=[]
 
@@ -174,23 +174,17 @@ kc7 = ((h2*7.5)/6)*tki
 
 
 #vectores de termicidad x elemento
-f11 = ((h1*Tf1*12.5)/2)*np.array([0,0,1,0])
-f12 = ((h1*Tf1*12.5)/2)*np.array([0,0,1,0])
-f14 = ((h1*Tf1*17.5)/2)*np.array([0,0,1,0])
-f16 = ((h1*Tf1*17.5)/2)*np.array([0,0,1,0])
-
-
-f1 = ((h2*Tf2*0.2)/2)*np.array([1,1,0])
-f2 = ((h2*Tf2*0.2)/2)*np.array([1,1,0])
-f3 = ((h2*Tf2*0.2)/2)*np.array([1,0,1])
-f7 = ((h2*Tf2*0.2)/2)*np.array([1,0,1])
-
+f11 = (150)*np.array([0,0,1,0])
+f12 = (150)*np.array([0,0,1,0])
+f14 = (150)*np.array([0,0,1,0])
+f16 = (150)*np.array([0,0,1,0])
 
 f1 = ((h2*Tf2*7.5)/2)*np.array([1,1,0])
 f2 = ((h2*Tf2*7.5)/2)*np.array([1,1,0])
 f3 = ((h2*Tf2*7.5)/2)*np.array([1,0,1])
 f7 = ((h2*Tf2*7.5)/2)*np.array([1,0,1])
-f6 = ((h1*Tf1*7.5)/2)*np.array([0,0,1])
+
+f6 = (150)*np.array([0,0,1])
 
 f9 = ((h2*Tf2*12.5)/2)*np.array([1,1,0,0])
 f10 = ((h2*Tf2*12.5)/2)*np.array([1,1,0,0])
@@ -202,8 +196,17 @@ f15 = ((h2*Tf2*17.5)/2)*np.array([1,0,0,1])
 #Matriz ensamble de elementos K
 MT = np.zeros((21,21))
 
+def matrizEndamble():
+    print("\n\n***************MAtriz Ensamble************\n")
+    for i in range(len(MT)):
+        for i in range(len(MT)):
+            print MT[i][j],
+            print "\t",
+        print "\n"
+    print("***************FIN Matriz Ensamble************\n\n")
+
 #Matriz k general
-for i in range(0,len(kd5)):#fila
+for i in range(0,len(kd1)):#fila
     for j in range(0,len(kd5)):#columna
          MT[e1[i]-1][e1[j]-1]+=kd1[i][j]+kc1[i][j]
          MT[e2[i]-1][e2[j]-1]+=kd2[i][j]+kc2[i][j]    
@@ -215,7 +218,7 @@ for i in range(0,len(kd5)):#fila
          MT[e7[i]-1][e7[j]-1]+=kd7[i][j]+kc7[i][j]    
          MT[e8[i]-1][e8[j]-1]+=kd8[i][j]
          
-         
+#matrizEndamble()        
          
 
 for i in range(0, len(kd9)):#fila
@@ -230,15 +233,6 @@ for i in range(0, len(kd9)):#fila
         MT[e16[i]-1][e16[j]-1]+=kd16[i][j]
         MT[e15[i]-1][e15[j]-1]+=kd15[i][j]+kc15[i][j]
 
-def matrizEndamble():
-    print("\n\n***************MAtriz Ensamble************\n")
-    for i in range(len(MT)):
-        for i in range(len(MT)):
-            print MT[i][j],
-            print "\t",
-        print "\n"
-    print("***************FIN Matriz Ensamble************\n\n")
-    
 F = np.zeros(21)        
 #Vector de termincidad F
 for i in range(0,len(e1)):
@@ -259,21 +253,22 @@ for i in range(0,len(e11)):
     F[e15[i]-1]+=f15[i]
 
 for i in range(0,21):#borrar filas,valores conocidos, temperatura interna chimenea
-        MT[14][i]=0
-        MT[13][i]=0
-        MT[5][i]=0
-        MT[20][i]=0
-        MT[17][i]=0
+        print("ping")
+        MT[14][i]=0.0
+        MT[13][i]=0.0
+        MT[12][i]=0.0
+        MT[20][i]=0.0
+        MT[17][i]=0.0
         
         
         
-MT[14][14]=1
-MT[13][13]=1
-MT[5][5]=1      
-MT[20][20]=1
-MT[17][17]=1
+MT[14][14]=1.0
+MT[13][13]=1.0
+MT[12][12]=1.0    
+MT[20][20]=1.0
+MT[17][17]=1.0
 
 matrizEndamble()
-c = np.linalg.solve(MT, F)
-for i in range(len(MT)):
-    print("Solución del sistema variable FI({0}) = {1}").format(i+1,c[i])
+#c = np.linalg.solve(MT, F)
+#for i in range(len(MT)):
+    #print("Solución del sistema variable FI({0}) = {1}").format(i+1,c[i])
