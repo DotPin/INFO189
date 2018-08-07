@@ -31,8 +31,15 @@ nx = np.array([[2, -1, -1, 1],[-2, 2, 1, -1],[-1, 1, 2, -2],[1, -1, -2, 2]])
 ny = np.array([[2, 1, -1, -2],[1, 2, -2, -1],[-1, -2, 2, 1],[-2, -1, 1, 2]])
 
 #ingreso coordenadas e5 y e6 triangulares superior e inferior
-t5 = np.array([[0,0],[0.2,0],[0,0.2]])
-t6 = np.array([[0.2,0],[0.2,0.2],[0,0.2]])
+t1 = np.array([[0,0],[7.5,0],[7.5,7.5]])
+t2 = np.array([[0,0],[7.5,0],[7.5,7.5]])
+t5 = np.array([[0,0],[7.5,0],[7.5,7.5]])
+t6 = np.array([[0,0],[7.5,0],[7.5,7.5]])
+
+t3 = np.array([[0,0],[7.5,7.5],[0,7.5]])
+t4 = np.array([[0,0],[7.5,7.5],[0,7.5]])
+t7 = np.array([[0,0],[7.5,7.5],[0,7.5]])
+t8 = np.array([[0,0],[7.5,7.5],[0,7.5]])
 
 
 #matrices factores para triangulo e5 y e6 respectivamente
@@ -41,6 +48,24 @@ trY1=[]
 
 trX2=[]
 trY2=[]
+
+trX5=[]
+trY5=[]
+
+trX6=[]
+trY6=[]
+
+trX3=[]
+trY3=[]
+
+trX4=[]
+trY4=[]
+
+trX7=[]
+trY7=[]
+
+trX8=[]
+trY8=[]
 
 #calculo factores triangulo
 def elementoTriangular(b):
@@ -68,8 +93,18 @@ def elementoTriangular(b):
     tcc = np.array(tc)
     return tbb,tcc
 
-[trX1, trY1] = elementoTriangular(t5)
-[trX2, trY2] = elementoTriangular(t6)
+[trX1, trY1] = elementoTriangular(t1)
+[trX2, trY2] = elementoTriangular(t2)
+[trX5, trY5] = elementoTriangular(t5)
+[trX6, trY6] = elementoTriangular(t6)
+
+[trX3, trY3] = elementoTriangular(t3)
+[trX4, trY4] = elementoTriangular(t4)
+[trX7, trY7] = elementoTriangular(t7)
+[trX8, trY8] = elementoTriangular(t8)
+
+
+
 
 
 #matrices de conduccion x elemento
@@ -85,11 +120,29 @@ e3 = np.array([6,7,9,8])
 kd4 = (kx/6)*(nx+ny)
 e4 = np.array([8,9,12,11])
 
-kd5 = (kx/(area*0.2))*(trX1+trY1)
-e5 = np.array([4,6,10])
+kd1 = (kx/(area*4))*(trX1+trY1)
+e1 = np.array([1,2,7])
 
-kd6 = (kx/(area*0.2))*(trX2+trY2)
-e6 = np.array([6,11,10])
+kd2 = (kx/(area*4))*(trX2+trY2)
+e2 = np.array([2,3,8])
+
+kd3 = (kx/(area*4))*(trX3+trY3)
+e3 = np.array([1,7,6])
+
+kd4 = (kx/(area*4))*(trX4+trY4)
+e4 = np.array([2,8,7])
+
+kd5 = (kx/(area*4))*(trX5+trY5)
+e5 = np.array([6,7,12])
+
+kd6 = (kx/(area*4))*(trX6+trY6)
+e6 = np.array([7,8,13])
+
+kd7 = (kx/(area*4))*(trX7+trY7)
+e7 = np.array([6,12,11])
+
+kd8 = (kx/(area*4))*(trX8+trY8)
+e8 = np.array([7,13,12])
 
 
 #matrices de conductividad x elemento
