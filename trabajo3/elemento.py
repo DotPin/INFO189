@@ -174,10 +174,10 @@ kc7 = ((h2*7.5)/6)*tki
 
 
 #vectores de termicidad x elemento
-f1 = ((20*30*0.1)/2)*np.array([1,0,0,1])
-f2 = 90*np.array([0,1,1,0])
-f3 = 90*np.array([0,1,0,0])
-f4 = ((20*50*0.1)/2)*np.array([0,0,1,1])
+f11 = ((h1*Tf1*12.5)/2)*np.array([0,0,1,0])
+f12 = ((h1*Tf1*12.5)/2)*np.array([0,0,1,0])
+f14 = ((h1*Tf1*17.5)/2)*np.array([0,1,0,0])
+f16 = ((h1*Tf1*17.5)/2)*np.array([0,1,0,0])
 
 f5 = ((20*50*0.2)/2)*np.array([1,0,1])
 f6 = ((20*30*0.2)/2)*np.array([0,1,1])
@@ -192,12 +192,17 @@ for i in range(0,len(kd5)):#fila
          MT[e5[i]-1][e5[j]-1]+=kd5[i][j]+kc5[i][j]
          MT[e6[i]-1][e6[j]-1]+=kd6[i][j]+kc6[i][j]    
 
-for i in range(0, len(kd1)):#fila
-    for j in range(0, len(kd1)):#columna
-        MT[e1[i]-1][e1[j]-1]+=kd1[i][j]+kc1[i][j]
-        MT[e2[i]-1][e2[j]-1]+=kd2[i][j]
-        MT[e3[i]-1][e3[j]-1]+=kd3[i][j]
-        MT[e4[i]-1][e4[j]-1]+=kd4[i][j]+kc4[i][j]
+for i in range(0, len(kd9)):#fila
+    for j in range(0, len(kd9)):#columna
+        MT[e9[i]-1][e9[j]-1]+=kd9[i][j]+kc9[i][j]
+        MT[e11[i]-1][e11[j]-1]+=kd11[i][j]
+        MT[e12[i]-1][e12[j]-1]+=kd12[i][j]
+        MT[e10[i]-1][e10[j]-1]+=kd10[i][j]+kc10[i][j]
+
+        MT[e13[i]-1][e13[j]-1]+=kd13[i][j]+kc13[i][j]
+        MT[e14[i]-1][e14[j]-1]+=kd14[i][j]
+        MT[e16[i]-1][e16[j]-1]+=kd16[i][j]
+        MT[e15[i]-1][e15[j]-1]+=kd15[i][j]+kc15[i][j]
 
 def matrizEndamble():
     print("\n\n***************MAtriz Ensamble************\n")
@@ -214,10 +219,10 @@ for i in range(0,len(e5)):
     F[e5[i]-1]+=f5[i]
     F[e6[i]-1]+=f6[i]
 for i in range(0,len(e1)):
-    F[e1[i]-1]+=f1[i]
-    F[e2[i]-1]+=f2[i]
-    F[e3[i]-1]+=f3[i]
-    F[e4[i]-1]+=f4[i]
+    F[e11[i]-1]+=f11[i]
+    F[e12[i]-1]+=f12[i]
+    F[e14[i]-1]+=f14[i]
+    F[e16[i]-1]+=f16[i]
 
 for i in range(0,12):#borrar filas,valores conocidos, temperatura interna chimenea
         MT[2][i]=0
