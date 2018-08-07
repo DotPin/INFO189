@@ -165,6 +165,14 @@ kc13 = ((h2*17.5)/6)*mmi
 kc15 = ((h2*17.5)/6)*mmi
 
 
+kc1 = ((h2*7.5)/6)*tij
+kc2 = ((h2*7.5)/6)*tij
+
+kc3 = ((h2*7.5)/6)*tki
+kc7 = ((h2*7.5)/6)*tki
+
+
+
 #vectores de termicidad x elemento
 f1 = ((20*30*0.1)/2)*np.array([1,0,0,1])
 f2 = 90*np.array([0,1,1,0])
@@ -176,7 +184,7 @@ f6 = ((20*30*0.2)/2)*np.array([0,1,1])
 
 
 #Matriz ensamble de elementos K
-MT = np.zeros((12,12))
+MT = np.zeros((21,21))
 
 #Matriz k general
 for i in range(0,len(kd5)):#fila
