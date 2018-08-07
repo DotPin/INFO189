@@ -176,8 +176,8 @@ kc7 = ((h2*7.5)/6)*tki
 #vectores de termicidad x elemento
 f11 = ((h1*Tf1*12.5)/2)*np.array([0,0,1,0])
 f12 = ((h1*Tf1*12.5)/2)*np.array([0,0,1,0])
-f14 = ((h1*Tf1*17.5)/2)*np.array([0,1,0,0])
-f16 = ((h1*Tf1*17.5)/2)*np.array([0,1,0,0])
+f14 = ((h1*Tf1*17.5)/2)*np.array([0,0,1,0])
+f16 = ((h1*Tf1*17.5)/2)*np.array([0,0,1,0])
 
 f9 = ((h2*Tf2*12.5)/2)*np.array([1,1,0,0])
 f10 = ((h2*Tf2*12.5)/2)*np.array([1,1,0,0])
