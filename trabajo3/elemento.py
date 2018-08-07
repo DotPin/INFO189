@@ -211,10 +211,10 @@ for i in range(0,len(e5)):
     F[e5[i]-1]+=f5[i]
     F[e6[i]-1]+=f6[i]
 for i in range(0,len(e1)):
-    F[e1[i]-1]+=f1[i]
-    F[e2[i]-1]+=f2[i]
-    F[e3[i]-1]+=f3[i]
-    F[e4[i]-1]+=f4[i]
+    F[e11[i]-1]+=f11[i]
+    F[e12[i]-1]+=f12[i]
+    F[e14[i]-1]+=f14[i]
+    F[e16[i]-1]+=f16[i]
 
 for i in range(0,12):#borrar filas,valores conocidos, temperatura interna chimenea
         MT[2][i]=0
