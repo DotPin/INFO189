@@ -180,10 +180,11 @@ f14 = ((h1*Tf1*17.5)/2)*np.array([0,1,0,0])
 f16 = ((h1*Tf1*17.5)/2)*np.array([0,1,0,0])
 
 
-f1 = ((h2*Tf2*0.2)/2)*np.array([1,1,0])
-f2 = ((h2*Tf2*0.2)/2)*np.array([1,1,0])
-f3 = ((h2*Tf2*0.2)/2)*np.array([1,0,1])
-f7 = ((h2*Tf2*0.2)/2)*np.array([1,0,1])
+f1 = ((h2*Tf2*7.5)/2)*np.array([1,1,0])
+f2 = ((h2*Tf2*7.5)/2)*np.array([1,1,0])
+f3 = ((h2*Tf2*7.5)/2)*np.array([1,0,1])
+f7 = ((h2*Tf2*7.5)/2)*np.array([1,0,1])
+f6 = ((h1*Tf1*7.5)/2)*np.array([0,0,1])
 
 f9 = ((h2*Tf2*12.5)/2)*np.array([1,1,0,0])
 f10 = ((h2*Tf2*12.5)/2)*np.array([1,1,0,0])
@@ -234,10 +235,14 @@ def matrizEndamble():
     
 F = np.zeros(21)        
 #Vector de termincidad F
-for i in range(0,len(e5)):
-    F[e5[i]-1]+=f5[i]
-    F[e6[i]-1]+=f6[i]
 for i in range(0,len(e1)):
+    F[e1[i]-1]+=f1[i]
+    F[e2[i]-1]+=f2[i]
+    F[e3[i]-1]+=f3[i]
+    F[e7[i]-1]+=f7[i]
+    F[e6[i]-1]+=f6[i]
+    
+for i in range(0,len(e11)):
     F[e11[i]-1]+=f11[i]
     F[e12[i]-1]+=f12[i]
     F[e14[i]-1]+=f14[i]
@@ -247,10 +252,16 @@ for i in range(0,len(e1)):
     F[e13[i]-1]+=f13[i]
     F[e15[i]-1]+=f15[i]
 
-for i in range(0,12):#borrar filas,valores conocidos, temperatura interna chimenea
-        MT[2][i]=0
-        MT[5][i]=0
-        MT[6][i]=0
+for i in range(0,21):#borrar filas,valores conocidos, temperatura interna chimenea
+        MT[14][i]=0
+        MT[13][i]=0
+        MT[12][i]=0
+        MT[11][i]=0
+        MT[20][i]=0
+        MT[17][i]=0
+        
+        
+        
 MT[2][2]=1
 MT[5][5]=1
 MT[6][6]=1      
