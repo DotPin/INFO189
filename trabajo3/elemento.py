@@ -105,11 +105,11 @@ e6 = np.array([6,11,10])
 
 
 #matrices de conductividad x elemento
-kc1 = ((h*0.1)/6)*mmi
-kc4 = ((h*0.1)/6)*mkm
+kc9 = ((h2*12.5)/6)*mij
+kc10 = ((h2*12.5)/6)*mij
 
-kc5 = ((h*0.2)/6)*tki
-kc6 = ((h*0.2)/6)*tjk
+kc13 = ((h2*17.5)/6)*mmi
+kc15 = ((h2*17.5)/6)*mmi
 
 
 #vectores de termicidad x elemento
