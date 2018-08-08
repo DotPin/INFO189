@@ -3,17 +3,6 @@
 
 import numpy as np
 
-def matrizEndamble():
-    print("\n\n***************MAtriz Ensamble************\n")
-    for i in range(len(MT)):
-        for j in range(len(MT)):
-            print MT[i][j],
-            print "\t",
-        print "\n"
-    print("***************FIN Matriz Ensamble************\n\n")
-
-
-
 #condiciones térmicas
 kx = 0.3
 area = (7.5*7.5)/2
@@ -115,28 +104,28 @@ def elementoTriangular(b):
 
 
 #matrices de conduccion x elemento
-kd9 = ((0.08*nx) + ((2/9)*ny))
+kd9 = ((0.08*nx) + ((2.0/9)*ny))
 e9 = np.array([3,4,9,8])
 
-kd10 = ((0.08*nx) + ((2/9)*ny))
+kd10 = ((0.08*nx) + ((2.0/9)*ny))
 e10 = np.array([4,5,10,9])
 
-kd11 = ((0.08*nx) + ((2/9)*ny))
+kd11 = ((0.08*nx) + ((2.0/9)*ny))
 e11 = np.array([8,9,14,13])
 
-kd12 = ((0.08*nx) + ((2/9)*ny))
+kd12 = ((0.08*nx) + ((2.0/9)*ny))
 e12 = np.array([9,10,15,14])
 
-kd13 = (((14/45)*nx) + ((2/35)*ny))
+kd13 = (((14.0/45)*nx) + ((2.0/35)*ny))
 e13 = np.array([11,12,17,16])
 
-kd14 = (((14/45)*nx) + ((2/35)*ny))
+kd14 = (((14.0/45)*nx) + ((2.0/35)*ny))
 e14 = np.array([12,13,18,17])
 
-kd15 = (((14/45)*nx) + ((2/35)*ny))
+kd15 = (((14.0/45)*nx) + ((2.0/35)*ny))
 e15 = np.array([16,17,20,19])
 
-kd16 = (((14/45)*nx) + ((2/35)*ny))
+kd16 = (((14.0/45)*nx) + ((2.0/35)*ny))
 e16 = np.array([17,18,21,20])
 
 kd1 = (kx/(area*4))*(trX1+trY1)
@@ -294,11 +283,7 @@ def matrizEnsamble():
 
 matrizEnsamble()
 
-#c = np.linalg.solve(MT, F)
-
-matrizEndamble()
-print(MT)
 c = np.linalg.solve(MT, F)
 
-#for i in range(len(MT)):
-    #print("Solución del sistema variable FI({0}) = {1}").format(i+1,c[i])
+for i in range(len(MT)):
+    print("Solución del sistema variable FI({0}) = {1}").format(i+1,c[i])
