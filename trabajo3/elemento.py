@@ -3,7 +3,14 @@
 
 import numpy as np
 
-
+def matrizEndamble():
+    print("\n\n***************MAtriz Ensamble************\n")
+    for i in range(len(MT)):
+        for j in range(len(MT)):
+            print MT[i][j],
+            print "\t",
+        print "\n"
+    print("***************FIN Matriz Ensamble************\n\n")
 
 
 
@@ -161,8 +168,15 @@ e8 = np.array([7,13,12])
 kc9 = ((h2*12.5)/6)*mij
 kc10 = ((h2*12.5)/6)*mij
 
+kc11 = ((h2*12.5)/6)*mkm
+kc12 = ((h2*12.5)/6)*mkm
+
+
 kc13 = ((h2*17.5)/6)*mmi
 kc15 = ((h2*17.5)/6)*mmi
+
+kc14 = ((h2*17.5)/6)*mjk
+kc16 = ((h2*17.5)/6)*mjk
 
 
 kc1 = ((h2*7.5)/6)*tij
@@ -215,13 +229,13 @@ for i in range(0,len(kd1)):#fila
 for i in range(0, len(kd9)):#fila
     for j in range(0, len(kd9)):#columna
         MT[e9[i]-1][e9[j]-1]+=kd9[i][j]+kc9[i][j]
-        MT[e11[i]-1][e11[j]-1]+=kd11[i][j]
-        MT[e12[i]-1][e12[j]-1]+=kd12[i][j]
+        MT[e11[i]-1][e11[j]-1]+=kd11[i][j]+kc11[i][j]
+        MT[e12[i]-1][e12[j]-1]+=kd12[i][j]+kc13[i][j]
         MT[e10[i]-1][e10[j]-1]+=kd10[i][j]+kc10[i][j]
 
         MT[e13[i]-1][e13[j]-1]+=kd13[i][j]+kc13[i][j]
-        MT[e14[i]-1][e14[j]-1]+=kd14[i][j]
-        MT[e16[i]-1][e16[j]-1]+=kd16[i][j]
+        MT[e14[i]-1][e14[j]-1]+=kd14[i][j]+kc14[i][j]
+        MT[e16[i]-1][e16[j]-1]+=kd16[i][j]+kc16[i][j]
         MT[e15[i]-1][e15[j]-1]+=kd15[i][j]+kc15[i][j]
 
 F = np.zeros(21)        
@@ -244,21 +258,22 @@ for i in range(0,len(e11)):
     F[e13[i]-1]+=f13[i]
     F[e15[i]-1]+=f15[i]
 
+
 for i in range(0,21):#borrar filas,valores conocidos, temperatura interna chimenea
-       
+    
         MT[14][i]=0.0
         MT[13][i]=0.0
         MT[12][i]=0.0
         MT[20][i]=0.0
         MT[17][i]=0.0
-        
-        
+       
         
 MT[14][14]=1.0
 MT[13][13]=1.0
 MT[12][12]=1.0    
 MT[20][20]=1.0
 MT[17][17]=1.0
+
 
 def matrizEnsamble():
     print("\n\n***************MAtriz Ensamble************\n")
@@ -280,5 +295,10 @@ def matrizEnsamble():
 matrizEnsamble()
 
 #c = np.linalg.solve(MT, F)
+
+matrizEndamble()
+print(MT)
+c = np.linalg.solve(MT, F)
+
 #for i in range(len(MT)):
     #print("Solución del sistema variable FI({0}) = {1}").format(i+1,c[i])
