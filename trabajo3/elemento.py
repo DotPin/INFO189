@@ -89,6 +89,8 @@ def elementoTriangular(b):
     tcc = np.array(tc)
     return tbb,tcc
 
+
+#retorna matrixes X e Y de cada elemento triangular
 [trX1, trY1] = elementoTriangular(t1)
 [trX2, trY2] = elementoTriangular(t2)
 [trX5, trY5] = elementoTriangular(t5)
@@ -153,7 +155,7 @@ kd8 = (kx/(area*4))*(trX8+trY8)
 e8 = np.array([7,13,12])
 
 
-#matrices de conductividad x elemento
+#matrices de convectividad x elemento
 kc9 = ((h2*12.5)/6)*mij
 kc10 = ((h2*12.5)/6)*mij
 
@@ -199,7 +201,7 @@ f15 = ((h2*Tf2*17.5)/2)*np.array([1,0,0,1])
 #Matriz ensamble de elementos K
 MT = np.zeros((21,21))
 
-#Matriz k general
+#Matriz k general de triángulo
 for i in range(0,len(kd1)):#fila
     for j in range(0,len(kd5)):#columna
          MT[e1[i]-1][e1[j]-1]+=kd1[i][j]+kc1[i][j]
@@ -212,9 +214,8 @@ for i in range(0,len(kd1)):#fila
          MT[e7[i]-1][e7[j]-1]+=kd7[i][j]+kc7[i][j]    
          MT[e8[i]-1][e8[j]-1]+=kd8[i][j]
          
-#matrizEndamble()        
-         
 
+#Matriz k general de cuadrado
 for i in range(0, len(kd9)):#fila
     for j in range(0, len(kd9)):#columna
         MT[e9[i]-1][e9[j]-1]+=kd9[i][j]+kc9[i][j]
@@ -229,14 +230,15 @@ for i in range(0, len(kd9)):#fila
 
 F = np.zeros(21)        
 
-#Vector de termincidad F
+#Vector de termincidad F triángulo
 for i in range(0,len(e1)):
     F[e1[i]-1]+=f1[i]
     F[e2[i]-1]+=f2[i]
     F[e3[i]-1]+=f3[i]
     F[e7[i]-1]+=f7[i]
     F[e6[i]-1]+=f6[i]
-    
+
+#Vector de termincidad F cuadrado
 for i in range(0,len(e11)):
     F[e11[i]-1]+=f11[i]
     F[e12[i]-1]+=f12[i]
@@ -248,15 +250,13 @@ for i in range(0,len(e11)):
     F[e15[i]-1]+=f15[i]
 
 
-for i in range(0,21):#borrar filas,valores conocidos, temperatura interna chimenea
-    
+#Setea las condiciones iniciales en la matriz de ensamble
+for i in range(0,21):
         MT[14][i]=0.0
         MT[13][i]=0.0
         MT[12][i]=0.0
         MT[20][i]=0.0
         MT[17][i]=0.0
-       
-        
 MT[14][14]=1.0
 MT[13][13]=1.0
 MT[12][12]=1.0    
