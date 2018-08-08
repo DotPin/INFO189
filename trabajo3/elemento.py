@@ -120,16 +120,16 @@ e11 = np.array([8,9,14,13])
 kd12 = ((0.08*nx) + ((2/9)*ny))
 e12 = np.array([9,10,15,14])
 
-kd13 = ((14/45*nx) + ((2/35)*ny))
+kd13 = (((14/45)*nx) + ((2/35)*ny))
 e13 = np.array([11,12,17,16])
 
-kd14 = ((14/45*nx) + ((2/35)*ny))
+kd14 = (((14/45)*nx) + ((2/35)*ny))
 e14 = np.array([12,13,18,17])
 
-kd15 = ((14/45*nx) + ((2/35)*ny))
+kd15 = (((14/45)*nx) + ((2/35)*ny))
 e15 = np.array([16,17,20,19])
 
-kd16 = ((14/45*nx) + ((2/35)*ny))
+kd16 = (((14/45)*nx) + ((2/35)*ny))
 e16 = np.array([17,18,21,20])
 
 kd1 = (kx/(area*4))*(trX1+trY1)
@@ -196,15 +196,6 @@ f15 = ((h2*Tf2*17.5)/2)*np.array([1,0,0,1])
 #Matriz ensamble de elementos K
 MT = np.zeros((21,21))
 
-def matrizEndamble():
-    print("\n\n***************MAtriz Ensamble************\n")
-    for i in range(len(MT)):
-        for i in range(len(MT)):
-            print MT[i][j],
-            print "\t",
-        print "\n"
-    print("***************FIN Matriz Ensamble************\n\n")
-
 #Matriz k general
 for i in range(0,len(kd1)):#fila
     for j in range(0,len(kd5)):#columna
@@ -234,6 +225,7 @@ for i in range(0, len(kd9)):#fila
         MT[e15[i]-1][e15[j]-1]+=kd15[i][j]+kc15[i][j]
 
 F = np.zeros(21)        
+
 #Vector de termincidad F
 for i in range(0,len(e1)):
     F[e1[i]-1]+=f1[i]
@@ -253,7 +245,7 @@ for i in range(0,len(e11)):
     F[e15[i]-1]+=f15[i]
 
 for i in range(0,21):#borrar filas,valores conocidos, temperatura interna chimenea
-        print("ping")
+       
         MT[14][i]=0.0
         MT[13][i]=0.0
         MT[12][i]=0.0
@@ -268,7 +260,25 @@ MT[12][12]=1.0
 MT[20][20]=1.0
 MT[17][17]=1.0
 
-matrizEndamble()
+def matrizEnsamble():
+    print("\n\n***************MAtriz Ensamble************\n")
+    print "\t",
+    for k in range(len(MT)):
+        print k+1,
+        print "\t",
+    print "\n"
+    for i in range(len(MT)):
+        print i+1,
+        print "\t",
+        for j in range(len(MT)):
+            print MT[i][j],
+            print "\t",
+        print F[i],
+        print "\n"
+    print("***************FIN Matriz Ensamble************\n\n")
+
+matrizEnsamble()
+
 #c = np.linalg.solve(MT, F)
 #for i in range(len(MT)):
     #print("Solución del sistema variable FI({0}) = {1}").format(i+1,c[i])
