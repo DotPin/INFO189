@@ -287,3 +287,8 @@ c = np.linalg.solve(MT, F)
 
 for i in range(len(MT)):
     print("Solución del sistema variable FI({0}) = {1}").format(i+1,c[i])
+
+
+with (open("sol.txt",'w')) as a:		#exporta los polinomios en archivo de texto
+  for i in c:
+    a.write(str(i)+"\n")
