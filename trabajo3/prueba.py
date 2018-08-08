@@ -35,11 +35,14 @@ for i in range(0,3):
         w[i][j] = c[ind]
         ind+=1
         print ind
-matrizEnsamble()
 
-ind = ind-1
-#for i in range(3,6):
-    #for j in range(0,3):
-        #w[i][j] = c[ind]
-        #ind+=1
-        #print ind
+
+#ind = ind-1
+for i in range(3,5):
+    for j in range(0,3):
+        print ind
+        w[i][j] = c[ind]
+        ind+=1
+        
+matrizEnsamble()
+        
