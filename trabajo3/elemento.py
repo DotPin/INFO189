@@ -292,3 +292,57 @@ for i in range(len(MT)):
 with (open("sol.txt",'w')) as a:		#exporta los polinomios en archivo de texto
   for i in c:
     a.write(str(i)+"\n")
+    
+def buscarnodo(x,y):
+    if x1>=0 and x1>40 and x1<=80:
+        x=80-x1
+    if y1>=0 and y1>50 and y1<=100:
+        y=100-y1
+    cx=0
+    cy=0
+    while True:
+        print "primer while"
+        if x<=7.5:
+            cx=0
+            break
+        if x<=15:
+            cx=1
+            break
+        if x<=25:
+            cx=2
+            break
+        if x<=40:
+            cx=3
+            break
+    while True:
+        print "segundo while"
+        if y<=7.5:
+            cy=0
+            break
+        if y<=15:
+            cy=1
+            break
+        if y<=32.5:
+            cy=2
+            break
+        if y<=50:
+            cy=3
+            break
+    print cx
+    print cy
+    MNodos = np.zeros((4,4))
+    MNodos[0][0]=1
+    MNodos[0][1]=5
+    MNodos[0][2]=13
+    MNodos[0][3]=15
+    MNodos[1][0]=2
+    MNodos[1][1]=6
+    MNodos[1][2]=14
+    MNodos[1][3]=16
+    MNodos[2][0]=9
+    MNodos[2][1]=11
+    MNodos[3][0]=10
+    MNodos[3][1]=12
+
+    print MNodos[cx][cy]
+    return MNodos[cx][cy]
