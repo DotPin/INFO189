@@ -460,4 +460,4 @@ q = buscarnodo(x,y)
 
 
 if(len(q)==4):
-    print(revisaCuadrado(q,0,49))
+    print(revisaCuadrado(q,x,y))
