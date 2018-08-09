@@ -456,11 +456,12 @@ def elemTriangulo(cc,x,y):
     rst = ni*c[cc[0]-1] + nj*c[cc[1]-1] + nk*c[cc[2]-1]
     return rst
 
+x = input("Ingrese valor de X: ")
+y = input ("Ingrese valor de Y: ")
+print ("Posicion ingresada: ({0},{1})").format(x,y)
 
-q = buscarnodo(0,49)
+q = buscarnodo(x,y)
 
 
 if(len(q)==4):
     print(revisaCuadrado(q,0,49))
-else:
-    print(elemTriangulo(
