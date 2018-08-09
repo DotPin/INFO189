@@ -354,3 +354,19 @@ def buscarnodo(x1,y1):
     return MNodos[cx][cy]
 
 q = buscarnodo(3,4)
+
+def elemCuadrado(nn,a,b,x,y):   #nm = vector nodos, b=largo cuadrado, a=alto cuadrado, x=coordenada, y=coordenada
+    
+    ni = (1-float(x)/b)*(1-float(y)/a)
+    nj = (float(x)/b)*(1-float(y)/a)
+    nk = (float(x)/b)*(float(y)/a)
+    nm = (1-float(x)/b)*(float(y)/a)
+    
+    rst = c[nm[0]]*ni   +   c[nm[1]]*nj +   c[nm[2]]*nk +   c[nm[3]]*nm
+    
+    return rst
+
+
+def elemTriangulo(nn,a,b,x,y):
+    
+    a1 = (1/(2*area))*((
