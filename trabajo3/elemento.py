@@ -3,6 +3,77 @@
 
 import numpy as np
 
+def incializarMatriz(c,valorFrontera):
+    z=np.zeros((5,5))
+    z[0][0]=c[0]
+    z[0][1]=c[1]
+    z[0][2]=c[2]
+    z[0][3]=c[3]
+    z[0][4]=c[4]
+
+    z[1][0]=c[5]
+    z[1][1]=c[6]
+    z[1][2]=c[7]
+    z[1][3]=c[8]
+    z[1][4]=c[9]
+
+    z[2][0]=c[5]
+    z[2][1]=c[6]
+    z[2][2]=c[7]
+    z[2][3]=c[8]
+    z[2][4]=c[9]
+
+    z[3][0]=c[10]
+    z[3][1]=c[11]
+    z[3][2]=c[12]
+    z[3][3]=c[13]
+    z[3][4]=c[14]
+
+
+
+    z[3][0]=c[15]
+    z[3][1]=c[16]
+    z[3][2]=c[17]
+
+    z[3][3]=valorFrontera
+    z[3][4]=valorFrontera
+
+
+    z[4][0]=c[18]
+    z[4][1]=c[19]
+    z[4][2]=c[20]
+
+    z[4][3]=valorFrontera
+    z[4][4]=valorFrontera
+    return(z)
+
+def calculaMatrizEntera(c,frontera):
+    z=incializarMatriz(c,frontera)
+
+    d1=z
+    d1Flip=np.flip(d1,1)
+
+    numerosDeLaChimenea=list()
+    for a in range(5):
+        fila=(np.append(d1[a],d1Flip[a]) )
+        numerosDeLaChimenea.append(fila )
+
+
+    chimeneaMitad=(np.asarray(numerosDeLaChimenea))
+    chimeneaMitad=np.flip(chimeneaMitad,0)
+
+
+    for a in range(5):
+        numerosDeLaChimenea.append(chimeneaMitad[a])
+    chimeneaMitad=(np.asarray(numerosDeLaChimenea))
+    chimeneaMitad=(np.delete(chimeneaMitad, 5, 1))
+    chimeneaMitad=(np.delete(chimeneaMitad, 5, 0))
+
+    chimeneaEntera=chimeneaMitad
+    return(chimeneaEntera)
+
+
+
 def recta1(x,y):
     Xr=7.5
     Yr=-7.5
@@ -20,10 +91,10 @@ def recta1(x,y):
 
 #condiciones térmicas
 kx = 0.8
-area = (7.5*7.5)/2
+area = float((7.5*7.5)/2)
 Tf1 = 150   #interior
 Tf2 = 10    #exterior
-h1 = 2      #interior
+h1 = 2.0      #interior
 h2 = 0.3    #exterior
 
 #matrices borde elementoCuadrado
@@ -279,29 +350,10 @@ MT[20][20]=1.0
 MT[17][17]=1.0
 
 
-def matrizEnsamble():
-    print("\n\n***************MAtriz Ensamble************\n")
-    print "\t",
-    for k in range(len(MT)):
-        print k+1,
-        print "\t",
-    print "\n"
-    for i in range(len(MT)):
-        print i+1,
-        print "\t",
-        for j in range(len(MT)):
-            print MT[i][j],
-            print "\t",
-        print F[i],
-        print "\n"
-    print("***************FIN Matriz Ensamble************\n\n")
 
-matrizEnsamble()
 
 c = np.linalg.solve(MT, F)
 
-for i in range(len(MT)):
-    print("Solución del sistema variable FI({0}) = {1}").format(i+1,c[i])
 
 
 with (open("sol.txt",'w')) as a:		#exporta los polinomios en archivo de texto
@@ -309,6 +361,8 @@ with (open("sol.txt",'w')) as a:		#exporta los polinomios en archivo de texto
     a.write(str(i)+"\n")
     
 def buscarnodo(x1,y1):
+    x1=int(x1)
+    y1=int(y1)
     x=0
     y=0
     if x1>=0 and x1>40 and x1<=80:
@@ -347,9 +401,8 @@ def buscarnodo(x1,y1):
         if y<=50:
             cy=3
             break
-    print cx
-    print cy
-    MNodos = [[0 for x in xrange(4)] for x in xrange(4)]
+
+    MNodos = [[0 for x in range(4)] for x in range(4)]
     MNodos[0][0]=e1
     MNodos[0][1]=e5
     MNodos[0][2]=e13
@@ -385,7 +438,6 @@ def buscarnodo(x1,y1):
                 print(e8)
                 return e8
 
-    print MNodos[cx][cy]
 
 
 
@@ -442,22 +494,79 @@ def elemCuadrado(nn,b,a,x,y):   #nm = vector nodos, b=largo cuadrado, a=alto cua
 def elemTriangulo(cc,x,y):
     
     
-    ni = (1/(2*area))*((tt[cc[0]][0]*tt[cc[2]][1]-tt[cc[2]][0]*tt[cc[1]][1])+ (tt[cc[1]][1]-tt[cc[2]][1])*x + (tt[cc[2]][0]-tt[cc[1]][0])*y )
+    ni = (1.0/(2*area))*((tt[cc[0]][0]*tt[cc[2]][1]-tt[cc[2]][0]*tt[cc[1]][1])+ (tt[cc[1]][1]-tt[cc[2]][1])*x + (tt[cc[2]][0]-tt[cc[1]][0])*y )
     
     
-    nj = (1/(2*area))*( (tt[cc[2]][0]*tt[cc[0]][1]-tt[cc[0]][0]*tt[cc[2]][1]) +(tt[cc[2]][1]-tt[cc[0]][1])*x + (tt[cc[0]][0]-tt[cc[2]][0])*y )
+    nj = (1.0/(2*area))*( (tt[cc[2]][0]*tt[cc[0]][1]-tt[cc[0]][0]*tt[cc[2]][1]) +(tt[cc[2]][1]-tt[cc[0]][1])*x + (tt[cc[0]][0]-tt[cc[2]][0])*y )
     
-    nk = (1/(2*area))*( (tt[cc[0]][0]*tt[cc[1]][1]-tt[cc[1]][0]*tt[cc[0]][1]) + (tt[cc[0]][1]-tt[cc[1]][1])*x + (tt[cc[2]][0]-tt[cc[0]][0])*y )
+    nk = (1.0/(2*area))*( (tt[cc[0]][0]*tt[cc[1]][1]-tt[cc[1]][0]*tt[cc[0]][1]) + (tt[cc[0]][1]-tt[cc[1]][1])*x + (tt[cc[2]][0]-tt[cc[0]][0])*y )
     
     rst = ni*c[cc[0]-1] + nj*c[cc[1]-1] + nk*c[cc[2]-1]
     return rst
 
+
+matrizEntera=calculaMatrizEntera(c,Tf1)
+
+
+
+
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+import numpy as np
+
+
+
+
+
+
+
+### Distancia entre puntos, no deberia ser necesario cambiarlo
+x = np.array([[0   ,7.5   ,15   ,27.5   ,40   ,52.5   ,65    ,72.5    ,80     ]])
+
+y = np.array([[0,7.5,15,32.5,50,67.5,85,92.5,100]])
+
+
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+
+
+#Creacion del mesh entre los puntos
+x, y = np.meshgrid(x, y)
+
+
+#Funcion para graficar
+surf = ax.plot_surface(x, y, matrizEntera, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+
+# eje z delmitador, Tf1 , es el maximo
+ax.set_zlim(0, Tf1)
+ax.zaxis.set_major_locator(LinearLocator(10))
+ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+
+# Barra de color del eje z
+fig.colorbar(surf, shrink=0.51, aspect=5)
+
+plt.show()
+
+
+
+fig, ax = plt.subplots()
+heatmap = ax.pcolor(matrizEntera, cmap=plt.cm.coolwarm)
+plt.show()
+
+
+
+
 x = input("Ingrese valor de X: ")
 y = input ("Ingrese valor de Y: ")
-print ("Posicion ingresada: ({0},{1})").format(x,y)
 
 q = buscarnodo(x,y)
 
 
 if(len(q)==4):
     print(revisaCuadrado(q,x,y))
+if(len(q)==3):
+	print(elemTriangulo(q,x,y))
