@@ -444,15 +444,16 @@ def elemCuadrado(nn,b,a,x,y):   #nm = vector nodos, b=largo cuadrado, a=alto cua
 
 
 def elemTriangulo(cc,x,y):
-    a1 = (1/(2*area))*((tt[cc[0]][0]*tt[cc[2]][1]-tt[cc[2]][0]*tt[cc[1]][1])*c[cc[0]-1] + 
-                       (tt[cc[2]][0]*tt[cc[0]][1]-tt[cc[0]][0]*tt[cc[2]][1])*c[cc[1]-1] +
-                       (tt[cc[0]][0]*tt[cc[1]][1]-tt[cc[1]][0]*tt[cc[0]][1])*c[cc[2]-1] )
     
-    a2 = (1/(2*area))*((tt[cc[1]][1]-tt[cc[2]][1])*c[cc[0]-1]+(tt[cc[2]][1]-tt[cc[0]][1])*c[cc[1]-1]+(tt[cc[0]][1]-tt[cc[1]][1])*c[cc[2]-1])
     
-    a3 = (1/(2*area))*((tt[cc[2]][0]-tt[cc[1]][0])*c[cc[0]-1]+(tt[cc[0]][0]-tt[cc[2]][0])*c[cc[1]-1]+(tt[cc[2]][0]-tt[cc[0]][0])*c[cc[2]-1])
+    ni = (1/(2*area))*((tt[cc[0]][0]*tt[cc[2]][1]-tt[cc[2]][0]*tt[cc[1]][1])+ (tt[cc[1]][1]-tt[cc[2]][1])*x + (tt[cc[2]][0]-tt[cc[1]][0])*y )
     
-    rst = a1 +a2*x+a3*y
+    
+    nj = (1/(2*area))*( (tt[cc[2]][0]*tt[cc[0]][1]-tt[cc[0]][0]*tt[cc[2]][1]) +(tt[cc[2]][1]-tt[cc[0]][1])*x + (tt[cc[0]][0]-tt[cc[2]][0])*y )
+    
+    nk = (1/(2*area))*( (tt[cc[0]][0]*tt[cc[1]][1]-tt[cc[1]][0]*tt[cc[0]][1]) + (tt[cc[0]][1]-tt[cc[1]][1])*x + (tt[cc[2]][0]-tt[cc[0]][0])*y )
+    
+    rst = ni*c[cc[0]-1] + nj*c[cc[1]-1] + nk*c[cc[2]-1]
     return rst
 
 
@@ -461,3 +462,5 @@ q = buscarnodo(0,49)
 
 if(len(q)==4):
     print(revisaCuadrado(q,0,49))
+else:
+    print(elemTriangulo(
