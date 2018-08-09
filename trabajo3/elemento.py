@@ -393,7 +393,6 @@ def buscarnodo(x1,y1):
 
     return MNodos[cx][cy]
 
-<<<<<<< HEAD
 tt = np.zeros((22,2))
 tt[1] =[0,0]
 tt[2] =[7.5,0]
@@ -437,10 +436,6 @@ def elemCuadrado(nn,b,a,x,y):   #nm = vector nodos, b=largo cuadrado, a=alto cua
     nm = (1-(float(x)/b))*((float(y)/a))
     
 
-    print(ni,nj,nk,nm)
-    print(c[nn[0]-1]*ni,c[nn[1]-1]*nj,c[nn[2]-1]*nk,c[nn[3]-1]*nm)
-    print(c[nn[0]-1],c[nn[1]-1],c[nn[2]-1],c[nn[3]-1])
-    
     rst = c[nn[0]-1]*ni   +   c[nn[1]-1]*nj +   c[nn[2]-1]*nk +   c[nn[3]-1]*nm
 
     
