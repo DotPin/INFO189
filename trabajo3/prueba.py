@@ -37,12 +37,33 @@ for i in range(0,3):
         print ind
 
 
-#ind = ind-1
+
 for i in range(3,5):
     for j in range(0,3):
         print ind
         w[i][j] = c[ind]
         ind+=1
         
+
+ind = 0
+for i in range(0,3):
+    for j in range(0,5):
+        w[i][j] = c[ind]
+        w[i][9-j] = c[ind]
+        w[9-i][j] = c[ind]
+        w[9-i][9-j] = c[ind] 
+        ind+=1
+        print ind
+        
+for i in range(3,5):
+    for j in range(0,3):
+        print ind
+        w[i][j] = c[ind]
+        w[i][9-j] = c[ind]
+        w[9-i][j] = c[ind]
+        w[9-i][9-j] = c[ind] 
+        ind+=1
+      
+
 matrizEnsamble()
         

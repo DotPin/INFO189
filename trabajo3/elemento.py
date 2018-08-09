@@ -4,7 +4,7 @@
 import numpy as np
 
 #condiciones térmicas
-kx = 0.3
+kx = 0.8
 area = (7.5*7.5)/2
 Tf1 = 150   #interior
 Tf2 = 10    #exterior
@@ -23,7 +23,7 @@ tjk= np.array([[0,0,0],[0,2,1],[0,1,2]])
 tki= np.array([[2,0,1],[0,0,0],[1,0,2]])
 
 #matrices factores elementoCuadrado
-nx = np.array([[2, -1, -1, 1],[-2, 2, 1, -1],[-1, 1, 2, -2],[1, -1, -2, 2]])
+nx = np.array([[2, -2, -1, 1],[-2, 2, 1, -1],[-1, 1, 2, -2],[1, -1, -2, 2]])
 ny = np.array([[2, 1, -1, -2],[1, 2, -2, -1],[-1, -2, 2, 1],[-2, -1, 1, 2]])
 
 #ingreso coordenadas e5 y e6 triangulares superior e inferior

@@ -169,6 +169,8 @@ def lagrange(xi,xj,i,x,fi):
     return f1+f2
 
 
+#L = [1.3, 8, 2.5]  # Arreglo de L
+#V VECTOR SOLUCION
 def conduccion(y):
     k=0
     acm = 0
