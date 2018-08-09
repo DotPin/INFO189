@@ -322,7 +322,6 @@ def buscarnodo(x1,y1):
     cx=0
     cy=0
     while True:
-        print "primer while"
         if x<=7.5:
             cx=0
             break
@@ -336,7 +335,6 @@ def buscarnodo(x1,y1):
             cx=3
             break
     while True:
-        print "segundo while"
         if y<=7.5:
             cy=0
             break
@@ -414,12 +412,10 @@ def revisaCuadrado(elementoCuadrado,x,y):
     if(criterio==4):
         b=12.5
         a=7.5
-        print("DERECHA")
         print(elemCuadrado(elementoCuadrado,a,b,x,y))
         return "a"
     b=7.5
     a=17.5
-    print("ARRIBA")
     print(elemCuadrado(elementoCuadrado,a,b,x,y))
     return [b,a]
 
