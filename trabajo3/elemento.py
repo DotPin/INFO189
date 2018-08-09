@@ -393,23 +393,40 @@ def buscarnodo(x1,y1):
 
     return MNodos[cx][cy]
 
+tt = np.zeros((22,2))
+tt[1] =[0,0]
+tt[2] =[7.5,0]
+tt[3] =[15.0,0]
+tt[6] =[0,7.5]
+tt[7] =[7.5,7.5]
+tt[8] =[15.0,7.5]
+tt[11] =[0,15.0]
+tt[12] =[7.5,15.0]
+tt[13] =[15.0,15.0]
 
 
-
-def elemCuadrado(nn,a,b,x,y):   #nm = vector nodos, b=largo cuadrado, a=alto cuadrado, x=coordenada, y=coordenada
+def elemCuadrado(nm,a,b,x,y):   #nm = vector nodos, b=largo cuadrado, a=alto cuadrado, x=coordenada, y=coordenada
     
     ni = (1-float(x)/b)*(1-float(y)/a)
     nj = (float(x)/b)*(1-float(y)/a)
     nk = (float(x)/b)*(float(y)/a)
     nm = (1-float(x)/b)*(float(y)/a)
     
-    rst = c[nm[0]]*ni   +   c[nm[1]]*nj +   c[nm[2]]*nk +   c[nm[3]]*nm
+    rst = c[nm[0]-1]*ni   +   c[nm[1]-1]*nj +   c[nm[2]-1]*nk +   c[nm[3]-1]*nm
     
     return rst
 
 
-def elemTriangulo(nn,a,b,x,y):
+def elemTriangulo(cc,x,y):
+    a1 = (1/(2*area))*((tt[cc[0]][0]*tt[cc[2]][1]-tt[cc[2]][0]*tt[cc[1]][1])*c[cc[0]-1] + 
+                       (tt[cc[2]][0]*tt[cc[0]][1]-tt[cc[0]][0]*tt[cc[2]][1])*c[cc[1]-1] +
+                       (tt[cc[0]][0]*tt[cc[1]][1]-tt[cc[1]][0]*tt[cc[0]][1])*c[cc[2]-1] )
     
-    a1 = (1/(2*area))*((
+    a2 = (1/(2*area))*((tt[cc[1]][1]-tt[cc[2]][1])*c[cc[0]-1]+(tt[cc[2]][1]-tt[cc[0]][1])*c[cc[1]-1]+(tt[cc[0]][1]-tt[cc[1]][1])*c[cc[2]-1])
+    
+    a3 = (1/(2*area))*((tt[cc[2]][0]-tt[cc[1]][0])*c[cc[0]-1]+(tt[cc[0]][0]-tt[cc[2]][0])*c[cc[1]-1]+(tt[cc[2]][0]-tt[cc[0]][0])*c[cc[2]-1])
+    
+    rst = a1 +a2*x+a3*y
+    return rst
 
 
