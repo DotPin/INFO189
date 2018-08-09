@@ -3,6 +3,21 @@
 
 import numpy as np
 
+def recta1(x,y):
+    Xr=7.5
+    Yr=-7.5
+    if(x>7.5):
+        x=x-7.5
+    if(y>7.5):
+        y=y-7.5
+    valor=Xr*x + Yr*y
+
+    if(valor<=0):
+        return True
+    else:
+        return False
+
+
 #condiciones térmicas
 kx = 0.8
 area = (7.5*7.5)/2
@@ -350,7 +365,33 @@ def buscarnodo(x1,y1):
     MNodos[3][0]=e10
     MNodos[3][1]=e12
 
+    largoM = len(MNodos[cx][cy])
+
+    if(largoM==3):
+        if(MNodos[cx][cy][0] == 1 and MNodos[cx][cy][1] == 2 and MNodos[cx][cy][2] == 7):
+            if(recta1(x,y)):
+                print(e3)
+                return e3
+
+        if(MNodos[cx][cy][0] == 2 and MNodos[cx][cy][1] == 3 and MNodos[cx][cy][2] == 8):
+            if(recta1(x,y)):
+                print(e4)
+                return e4
+
+        if(MNodos[cx][cy][0] == 6 and MNodos[cx][cy][1] == 7 and MNodos[cx][cy][2] == 12):
+            if(recta1(x,y)):
+                print(e7)
+                return e7
+        if(MNodos[cx][cy][0] == 7 and MNodos[cx][cy][1] == 8 and MNodos[cx][cy][2] == 13):
+            if(recta1(x,y)):
+                print(e8)
+                return e8
+
     print MNodos[cx][cy]
+
+
+
     return MNodos[cx][cy]
 
-q = buscarnodo(3,4)
+q = buscarnodo(0,7)
+print(q)
