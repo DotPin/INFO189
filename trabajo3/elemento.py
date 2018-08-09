@@ -396,20 +396,50 @@ def buscarnodo(x1,y1):
 
 
 
-def elemCuadrado(nn,a,b,x,y):   #nm = vector nodos, b=largo cuadrado, a=alto cuadrado, x=coordenada, y=coordenada
+def revisaCuadrado(elementoCuadrado,x,y):
+    criterio=0
     
-    ni = (1-float(x)/b)*(1-float(y)/a)
-    nj = (float(x)/b)*(1-float(y)/a)
+    for nodo in elementoCuadrado:
+        if(nodo<=15):
+            criterio=criterio+1
+    if(criterio==4):
+        b=12.5
+        a=7.5
+        print("DERECHA")
+        print(elemCuadrado(elementoCuadrado,a,b,x,y))
+        return "a"
+    b=7.5
+    a=17.5
+    print("ARRIBA")
+    print(elemCuadrado(elementoCuadrado,a,b,x,y))
+    return [b,a]
+
+
+
+def elemCuadrado(nn,b,a,x,y):   #nm = vector nodos, b=largo cuadrado, a=alto cuadrado, x=coordenada, y=coordenada
+
+    ni = (1-(float(x)/b) ) *(1-(float(y)/a)) 
+ 
+    nj = (float(x)/b)*((1-(float(y)/a)))
+ 
     nk = (float(x)/b)*(float(y)/a)
-    nm = (1-float(x)/b)*(float(y)/a)
+ 
+    nm = (1-(float(x)/b))*((float(y)/a))
     
-    rst = c[nm[0]]*ni   +   c[nm[1]]*nj +   c[nm[2]]*nk +   c[nm[3]]*nm
+    print(ni,nj,nk,nm)
+    print(c[nn[0]-1]*ni,c[nn[1]-1]*nj,c[nn[2]-1]*nk,c[nn[3]-1]*nm)
+    print(c[nn[0]-1],c[nn[1]-1],c[nn[2]-1],c[nn[3]-1])
+    
+    rst = c[nn[0]-1]*ni   +   c[nn[1]-1]*nj +   c[nn[2]-1]*nk +   c[nn[3]-1]*nm
     
     return rst
 
 
-def elemTriangulo(nn,a,b,x,y):
-    
-    a1 = (1/(2*area))*((
 
 
+
+q = buscarnodo(0,49)
+
+
+if(len(q)==4):
+    print(revisaCuadrado(q,0,49))
